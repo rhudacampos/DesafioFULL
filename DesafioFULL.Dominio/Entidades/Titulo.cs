@@ -9,6 +9,7 @@ namespace DesafioFULL.Dominio.Entidades
     public class Titulo: EntidadeBase
     {
         public long ClienteId { get; set; }
+        public virtual Cliente Cliente { get; set; }
         public int QtdeParcelas { get; set; }
         public decimal PerJuros { get; set; }
         public decimal PerMulta { get; set; }
@@ -16,7 +17,7 @@ namespace DesafioFULL.Dominio.Entidades
         public decimal VlrCorrigido { get; set; }
         public int DiasEmAtraso { get; set; }
 
-        public ICollection<TituloParcela> Parcelas { get; set; }
+        public virtual ICollection<TituloParcela> Parcelas { get; set; }
 
         public override void Validar()
         {

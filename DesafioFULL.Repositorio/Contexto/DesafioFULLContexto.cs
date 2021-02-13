@@ -1,4 +1,5 @@
 ﻿using DesafioFULL.Dominio.Entidades;
+using DesafioFULL.Repositorio.Config;
 using Microsoft.EntityFrameworkCore;
 
 namespace DesafioFULL.Repositorio.Contexto
@@ -7,6 +8,15 @@ namespace DesafioFULL.Repositorio.Contexto
     {
         public DesafioFULLContexto(DbContextOptions options) : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+            modelBuilder.ApplyConfiguration(new TituloConfiguration());
+            modelBuilder.ApplyConfiguration(new TituloParcelaConfiguration());
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Usuario> Usuarios { get; set; }

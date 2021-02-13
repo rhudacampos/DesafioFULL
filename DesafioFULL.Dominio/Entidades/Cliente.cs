@@ -13,7 +13,7 @@ namespace DesafioFULL.Dominio.Entidades
         public string CPF { get; set; }
         public string Fone { get; set; }
          
-        public ICollection<Titulo> Titulos { get; set; }
+        public virtual ICollection<Titulo> Titulos { get; set; }
 
         public override void Validar()
         {

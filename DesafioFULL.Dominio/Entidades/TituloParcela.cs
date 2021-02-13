@@ -9,6 +9,7 @@ namespace DesafioFULL.Dominio.Entidades
     public class TituloParcela: EntidadeBase
     {
         public long TituloId { get; set; }
+        public virtual Titulo Titulo { get; set; }
         public int NumParcela { get; set; }
         public DateTime Vencimento { get; set; }
         public decimal VlrOriginal { get; set; }

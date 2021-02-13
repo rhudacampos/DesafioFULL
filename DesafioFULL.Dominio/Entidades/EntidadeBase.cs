@@ -6,7 +6,7 @@ namespace DesafioFULL.Dominio.Entidades
     public abstract class EntidadeBase
     {
         public long Id { get; set; }
-        public List<string> _mesagemValidacao { get; set; }
+        private List<string> _mesagemValidacao { get; set; }
         private List<string> mensagemValidacao
         {
             get { return _mesagemValidacao ?? (_mesagemValidacao = new List<string>()); }

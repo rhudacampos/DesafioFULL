@@ -1,0 +1,8 @@
+{
+  "ConnectionStrings": {
+    "SqlServerConnection": "",
+    "MySqlConnection": "server=localhost1;uid=root;pwd=rhuda123;database=DesafioFull"
+  }
+
+}
+
