@@ -12,8 +12,10 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
 import { LoginComponent } from './usuario/login/login.component';
 import { ClienteComponent } from "./cliente/cliente.component";
+import { GuardaRotas } from './autorizacao/guarda.rotas';
+import { UsuarioServico } from './servicos/usuario/usuario.servico';
 
-
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,11 +36,11 @@ import { ClienteComponent } from "./cliente/cliente.component";
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'cliente', component: ClienteComponent },
+      { path: 'cliente', component: ClienteComponent, canActivate:[GuardaRotas] },
       
     ])
   ],
-  providers: [],
+  providers: [UsuarioServico],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

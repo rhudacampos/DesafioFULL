@@ -48,5 +48,24 @@ namespace DesafioFULL.Web.Controllers
             }
         }
 
+        [HttpPost("VerificarUsuario")]
+        public IActionResult VerificarUsuario([FromBody] Usuario usuario)
+        {
+            try
+            {
+                if (true)
+                {
+                    return Ok(usuario);
+                }
+                return BadRequest("Usuário ou senha inválido");
+                //_repositorioUsuario.Adicionar(Usuario);
+                //return Created("Usuario", Usuario);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
+        }
+
     }
 }
