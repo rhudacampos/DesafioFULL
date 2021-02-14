@@ -16,6 +16,7 @@ namespace DesafioFULL.Repositorio.Contexto
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new TituloConfiguration());
             modelBuilder.ApplyConfiguration(new TituloParcelaConfiguration());
+
             base.OnModelCreating(modelBuilder);
         }
 
