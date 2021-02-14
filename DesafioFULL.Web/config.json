@@ -1,7 +1,7 @@
 {
   "ConnectionStrings": {
     "SqlServerConnection": "",
-    "MySqlConnection": "server=localhost1;uid=root;pwd=rhuda123;database=DesafioFull"
+    "MySqlConnection": "server=localhost;uid=root;pwd=rhuda123;database=DesafioFull"
   }
 
 }
