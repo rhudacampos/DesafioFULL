@@ -36,7 +36,10 @@ namespace DesafioFULL.Web
                             .UseMySql(connectionString, 
                                       m => m.MigrationsAssembly("DesafioFULL.Repositorio") ));
 
+            services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
             services.AddScoped<IRepositorioCliente, RepositorioCliente>();
+            services.AddScoped<IRepositorioTitulo, RepositorioTitulo>();
+            services.AddScoped<IRepositorioTituloParcela, RepositorioTituloParcela>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -84,8 +87,8 @@ namespace DesafioFULL.Web
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
+                    //spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 }
             });
         }

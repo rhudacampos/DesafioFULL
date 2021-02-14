@@ -7,12 +7,12 @@ namespace DesafioFULL.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ClienteController : Controller
+    public class TituloParcelaController : Controller
     {
-        private readonly IRepositorioCliente _repositorioCliente;
-        public ClienteController(IRepositorioCliente repositorioCliente)
+        private readonly IRepositorioTituloParcela _repositorioTituloParcela;
+        public TituloParcelaController(IRepositorioTituloParcela repositorioTituloParcela)
         {
-            _repositorioCliente = repositorioCliente;
+            _repositorioTituloParcela = repositorioTituloParcela;
         }
 
         [HttpGet]
@@ -20,7 +20,7 @@ namespace DesafioFULL.Web.Controllers
         {
             try
             {
-                return Ok(_repositorioCliente.ObterTodos());
+                return Ok(_repositorioTituloParcela.ObterTodos());
                 //if(condicao == false)
                 //{
                 //    return BadRequest("");
@@ -34,12 +34,12 @@ namespace DesafioFULL.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Cliente cliente)
+        public IActionResult Post([FromBody]TituloParcela TituloParcela)
         {
             try
             {
-                _repositorioCliente.Adicionar(cliente);
-                return Created("cliente", cliente);
+                _repositorioTituloParcela.Adicionar(TituloParcela);
+                return Created("tituloParcela", TituloParcela);
             }
             catch (Exception e)
             {
