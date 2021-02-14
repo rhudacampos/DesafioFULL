@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioFULL.Dominio", "Desa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioFULL.Repositorio", "DesafioFULL.Repositorio\DesafioFULL.Repositorio.csproj", "{5C9E1CC6-E786-4C9E-AC11-28168355201F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioFULL.Aplicacao", "DesafioFULL.Aplicacao\DesafioFULL.Aplicacao.csproj", "{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioFULL.Web", "DesafioFULL.Web\DesafioFULL.Web.csproj", "{C2E84B1F-70DD-440A-AA0A-8BE637F64961}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioFULL.Web", "DesafioFULL.Web\DesafioFULL.Web.csproj", "{C2E84B1F-70DD-440A-AA0A-8BE637F64961}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,18 +43,6 @@ Global
 		{5C9E1CC6-E786-4C9E-AC11-28168355201F}.Release|x64.Build.0 = Release|Any CPU
 		{5C9E1CC6-E786-4C9E-AC11-28168355201F}.Release|x86.ActiveCfg = Release|Any CPU
 		{5C9E1CC6-E786-4C9E-AC11-28168355201F}.Release|x86.Build.0 = Release|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Debug|x64.Build.0 = Debug|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Debug|x86.Build.0 = Debug|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Release|x64.ActiveCfg = Release|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Release|x64.Build.0 = Release|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Release|x86.ActiveCfg = Release|Any CPU
-		{7D83D711-A1C4-4A92-8D38-B8E5AFA62F60}.Release|x86.Build.0 = Release|Any CPU
 		{C2E84B1F-70DD-440A-AA0A-8BE637F64961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C2E84B1F-70DD-440A-AA0A-8BE637F64961}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2E84B1F-70DD-440A-AA0A-8BE637F64961}.Debug|x64.ActiveCfg = Debug|Any CPU
