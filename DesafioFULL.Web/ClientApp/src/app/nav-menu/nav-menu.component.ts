@@ -8,6 +8,14 @@ import { Component } from '@angular/core';
 export class NavMenuComponent {
   isExpanded = false;
 
+  public TituloPaschoalotto = "Paschoalotto";
+  public enderecoPaschoalotto = "https://www.paschoalotto.com.br/";
+  public enderecoLogoPaschoalotto = "https://www.paschoalotto.com.br/wp-content/uploads/2020/11/Logo-Paschoalotto-PNG-768x152-2.png";
+
+  linkPaschoalotto(){
+    window.open(this.enderecoPaschoalotto, "_blank");
+  }
+
   collapse() {
     this.isExpanded = false;
   }
