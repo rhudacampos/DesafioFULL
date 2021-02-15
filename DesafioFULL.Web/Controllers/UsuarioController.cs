@@ -53,13 +53,14 @@ namespace DesafioFULL.Web.Controllers
         {
             try
             {
-                if (true)
+                var usuarioRetorno = _repositorioUsuario.ObterPorAutenticacao(usuario.Email, usuario.Senha);
+                if (usuarioRetorno != null)
                 {
-                    return Ok(usuario);
+                    return Ok(usuarioRetorno);
                 }
+
                 return BadRequest("Usuário ou senha inválido");
-                //_repositorioUsuario.Adicionar(Usuario);
-                //return Created("Usuario", Usuario);
+
             }
             catch (Exception e)
             {

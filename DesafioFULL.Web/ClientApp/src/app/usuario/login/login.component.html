@@ -38,6 +38,9 @@
 
     <button class="btn btn-primary btn-block" type="submit" (click)="login()">Acessar</button>
     <!--<img src="..\..\assets\img\desafioFullLogo.png" />-->
+    <div class="alert alert-danger" *ngIf="mensagem">
+      {{mensagem}}
+    </div>
 
   </form>
 

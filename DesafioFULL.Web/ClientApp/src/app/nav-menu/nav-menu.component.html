@@ -3,53 +3,53 @@
     <div class="container">
       <!--<a class="navbar-brand" [routerLink]="['/']">DesafioFULL.Web</a>-->
       <!--<a class="navbar-brand" [routerLink]="['/']"><img src="..\..\assets\img\desafioFullLogo.png" /></a>-->
-      
-        <img src="..\..\assets\img\desafioFullLogo.png" />
 
-        <a class="navbar-brand img-logo"
-           [title]="TituloPaschoalotto"
-           (click)="linkPaschoalotto()">
-          <img [src]="enderecoLogoPaschoalotto" />
-        </a>
+      <img src="..\..\assets\img\desafioFullLogo.png" />
 
-        <!--<img [src]="enderecoLogoPaschoalotto" />-->
+      <a class="navbar-brand img-logo"
+         [title]="TituloPaschoalotto"
+         (click)="linkPaschoalotto()">
+        <img [src]="enderecoLogoPaschoalotto" />
+      </a>
 
-        <button class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target=".navbar-collapse"
-                aria-label="Toggle navigation"
-                [attr.aria-expanded]="isExpanded"
-                (click)="toggle()">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-             [ngClass]="{ show: isExpanded }">
-          <ul class="navbar-nav flex-grow">
-            <li class="nav-item"
-                [routerLinkActive]="['link-active']"
-                [routerLinkActiveOptions]="{ exact: true }">
-              <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/counter']">Counter</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/fetch-data']">Fetch data</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/cliente']">Cliente</a>
-            </li>
+      <!--<img [src]="enderecoLogoPaschoalotto" />-->
 
-            <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="!usuarioLogado()">
-              <a class="nav-link text-dark" [routerLink]="['/login']">Login</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-item nav-link text-dark" [routerLink]="['/sair']" *ngIf="usuarioLogado()" (click)="logout()">Sair</a>
-            </li>
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+           [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/counter']">Counter</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/fetch-data']">Fetch data</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/cliente']">Cliente</a>
+          </li>
 
-          </ul>
-        </div>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="!usuarioLogado()">
+            <a class="nav-link text-dark" [routerLink]="['/login']">Login</a>
+          </li>
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-item nav-link text-dark" [routerLink]="['/sair']" *ngIf="usuarioLogado()" (click)="logout()">{{nomeLogado}} (Sair)</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

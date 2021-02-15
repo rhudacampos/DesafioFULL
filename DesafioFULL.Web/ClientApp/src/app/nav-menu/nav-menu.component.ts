@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsuarioServico } from '../servicos/usuario/usuario.servico';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private usuarioServico: UsuarioServico) {
 
   }
 
@@ -17,6 +18,8 @@ export class NavMenuComponent {
   public TituloPaschoalotto = "Paschoalotto";
   public enderecoPaschoalotto = "https://www.paschoalotto.com.br/";
   public enderecoLogoPaschoalotto = "https://www.paschoalotto.com.br/wp-content/uploads/2020/11/Logo-Paschoalotto-PNG-768x152-2.png";
+  public emailLogado = "";
+  public nomeLogado = "";
 
   linkPaschoalotto(){
     window.open(this.enderecoPaschoalotto, "_blank");
@@ -31,16 +34,19 @@ export class NavMenuComponent {
   }
 
   public usuarioLogado(): boolean {
-    //var usuarioLogado = sessionStorage.getItem("usuario-autenticado");
-    //if (usuarioLogado == "1") {
-    //  return true;
-    //}
-    //return false;
-    return sessionStorage.getItem("usuario-autenticado") == "1";
+    if (this.usuarioServico.usuario_autenticado()) {
+      this.emailLogado = this.usuarioServico.usuarioSessao.email;
+      this.nomeLogado = this.usuarioServico.usuarioSessao.nome;
+      return true;
+    }
+    else {
+      return false
+    };
+    
   }
 
   logout() {
-    sessionStorage.setItem("usuario-autenticado", "0");
+    this.usuarioServico.limpar_sessao();
     this.router.navigate(["/"]);
   }
 
