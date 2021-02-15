@@ -36,7 +36,10 @@
       <div *ngIf="senha.errors.required">Senha deve ser informada </div>
     </div>
 
-    <button class="btn btn-primary btn-block" type="submit" (click)="login()">Acessar</button>
+    <button class="btn btn-primary btn-block" type="submit" (click)="login()" [disabled]="ativarSpinner">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativarSpinner"></span>
+      Acessar
+    </button>
     <!--<img src="..\..\assets\img\desafioFullLogo.png" />-->
     <div class="alert alert-danger" *ngIf="mensagem">
       {{mensagem}}
