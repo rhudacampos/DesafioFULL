@@ -1,6 +1,6 @@
 ﻿using DesafioFULL.Dominio.Entidades;
 
-namespace DesafioFULL.Dominio.Interfaces
+namespace DesafioFULL.Dominio.Interfaces.Repositorios
 {
     public interface IRepositorioUsuario: IRepositorioBase<Usuario>
     {

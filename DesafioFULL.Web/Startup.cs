@@ -1,4 +1,6 @@
-using DesafioFULL.Dominio.Interfaces;
+using DesafioFULL.Aplicacao.Interfaces;
+using DesafioFULL.Aplicacao.Serviços;
+using DesafioFULL.Dominio.Interfaces.Repositorios;
 using DesafioFULL.Repositorio.Contexto;
 using DesafioFULL.Repositorio.Repositorios;
 using Microsoft.AspNetCore.Builder;
@@ -34,11 +36,13 @@ namespace DesafioFULL.Web
                             //.UseLazyLoadingProxies() 
                             .UseMySql(connectionString, 
                                       m => m.MigrationsAssembly("DesafioFULL.Repositorio") ));
-
+            
             services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
-            services.AddScoped<IRepositorioCliente, RepositorioCliente>();
-            services.AddScoped<IRepositorioTitulo, RepositorioTitulo>();
-            services.AddScoped<IRepositorioTituloParcela, RepositorioTituloParcela>();
+            services.AddScoped<IAppServicoUsuario, AppServicoUsuario>();
+            
+            //services.AddScoped<IRepositorioCliente, RepositorioCliente>();
+            //services.AddScoped<IRepositorioTitulo, RepositorioTitulo>();
+            //services.AddScoped<IRepositorioTituloParcela, RepositorioTituloParcela>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

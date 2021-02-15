@@ -17,6 +17,16 @@ namespace DesafioFULL.Repositorio.Contexto
             modelBuilder.ApplyConfiguration(new TituloConfiguration());
             modelBuilder.ApplyConfiguration(new TituloParcelaConfiguration());
 
+            modelBuilder.Entity<Usuario>().HasData(
+                new Usuario
+                {
+                    Id = 1,
+                    Email = "admin@admin.com",
+                    Senha = "admin",
+                    Nome = "Administrador",
+                    SobreNome = "Admin"
+                });
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -1,5 +1,6 @@
-﻿using DesafioFULL.Dominio.Entidades;
-using DesafioFULL.Dominio.Interfaces;
+﻿using DesafioFULL.Aplicacao.Interfaces;
+using DesafioFULL.Dominio.Entidades;
+using DesafioFULL.Dominio.Interfaces.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -9,10 +10,11 @@ namespace DesafioFULL.Web.Controllers
     [Route("[controller]")]
     public class UsuarioController : Controller
     {
-        private readonly IRepositorioUsuario _repositorioUsuario;
-        public UsuarioController(IRepositorioUsuario repositorioUsuario)
+        //private readonly IRepositorioUsuario _repositorioUsuario;
+        private readonly IAppServicoUsuario _appServicoUsuario;
+        public UsuarioController(IAppServicoUsuario appServicoUsuario)
         {
-            _repositorioUsuario = repositorioUsuario;
+            _appServicoUsuario = appServicoUsuario;
         }
 
         [HttpGet]
@@ -20,7 +22,7 @@ namespace DesafioFULL.Web.Controllers
         {
             try
             {
-                return Ok(_repositorioUsuario.ObterTodos());
+                return Ok(_appServicoUsuario.ObterTodos());
                 //if(condicao == false)
                 //{
                 //    return BadRequest("");
@@ -38,7 +40,7 @@ namespace DesafioFULL.Web.Controllers
         {
             try
             {
-                _repositorioUsuario.Adicionar(Usuario);
+                _appServicoUsuario.Adicionar(Usuario);
                 return Created("Usuario", Usuario);
             }
             catch (Exception e)
@@ -53,7 +55,7 @@ namespace DesafioFULL.Web.Controllers
         {
             try
             {
-                var usuarioRetorno = _repositorioUsuario.ObterPorAutenticacao(usuario.Email, usuario.Senha);
+                var usuarioRetorno = _appServicoUsuario.AutenticarUsuario(usuario.Email, usuario.Senha);
                 if (usuarioRetorno != null)
                 {
                     return Ok(usuarioRetorno);

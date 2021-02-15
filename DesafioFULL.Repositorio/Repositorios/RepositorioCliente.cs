@@ -1,5 +1,5 @@
 ﻿using DesafioFULL.Dominio.Entidades;
-using DesafioFULL.Dominio.Interfaces;
+using DesafioFULL.Dominio.Interfaces.Repositorios;
 using DesafioFULL.Repositorio.Contexto;
 
 namespace DesafioFULL.Repositorio.Repositorios

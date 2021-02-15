@@ -1,5 +1,5 @@
 ﻿using DesafioFULL.Dominio.Entidades;
-using DesafioFULL.Dominio.Interfaces;
+using DesafioFULL.Dominio.Interfaces.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

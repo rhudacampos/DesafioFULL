@@ -1,15 +1,15 @@
-﻿using DesafioFULL.Dominio.Interfaces.Repositorios;
+﻿using DesafioFULL.Aplicacao.Interfaces;
 using DesafioFULL.Repositorio.Contexto;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DesafioFULL.Repositorio.Repositorios
+namespace DesafioFULL.Aplicacao.Serviços
 {
-    public class RepositorioBase<TEntity> : IRepositorioBase<TEntity> where TEntity : class
+    public class AppServicoBase<TEntity> : IAppServicoBase<TEntity> where TEntity : class
     {
         protected readonly DesafioFULLContexto DesafioFULLContexto;
 
-        public RepositorioBase(DesafioFULLContexto desafioFULLContexto)
+        public AppServicoBase(DesafioFULLContexto desafioFULLContexto)
         {
             DesafioFULLContexto = desafioFULLContexto;
         }
@@ -25,7 +25,7 @@ namespace DesafioFULL.Repositorio.Repositorios
             DesafioFULLContexto.Set<TEntity>().Update(entity);
             DesafioFULLContexto.SaveChanges();
         }
-        
+
 
         public TEntity ObterPorId(long id)
         {

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DesafioFULL.Dominio.Interfaces
+namespace DesafioFULL.Dominio.Interfaces.Repositorios
 {
     public interface IRepositorioBase<TEntity> : IDisposable where TEntity : class
     {
