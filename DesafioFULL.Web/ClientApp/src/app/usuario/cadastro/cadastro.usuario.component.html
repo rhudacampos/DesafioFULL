@@ -1,10 +1,33 @@
 <div class="text-center">
   <form class="form-signin mb-2">
-    <h1 class="h4 mb-2 login">Login de Usuário</h1>
+    <h1 class="h4 mb-2 login">Cadastro de Usuário</h1>
 
-    <label for="inputEmail" class="sr-only mb-2">Email</label> <!--label para Acessibilidade-->
+    <label for="inputNome" class="sr-only mb-2">Nome</label> <!--label para Acessibilidade-->
+    <input type="text" id="inputNome"
+           name="nome" placeholder="Nome"
+           class="form-control mb-2"
+           #nome="ngModel"
+           [ngClass]="{
+            'is-invalid':nome.invalid && (nome.dirty || nome.touched),
+            'is-valid':nome.valid && (nome.dirty || nome.touched)
+           }"
+           [(ngModel)]="usuario.nome"
+           required />
+
+    <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+      <div *ngIf="nome.errors.required">Nome deve ser informado </div>
+    </div>
+
+    <label for="inputSobreNome" class="sr-only mb-2">Sobre Nome</label> <!--label para Acessibilidade-->
+    <input type="text" id="inputSobreNome"
+           name="sobreNome" placeholder="Sobre Nome"
+           class="form-control mb-2"
+           #sobreNome="ngModel"
+           [(ngModel)]="usuario.sobreNome" />
+
+    <label for="inputEmail" class="sr-only mb-2">Email</label>
     <input type="email" id="inputEmail"
-           name="email" placeholder="Informe o seu Email"
+           name="email" placeholder="Email"
            class="form-control mb-2"
            #email="ngModel"
            [ngClass]="{
@@ -36,15 +59,12 @@
       <div *ngIf="senha.errors.required">Senha deve ser informada </div>
     </div>
 
-    <button class="btn btn-primary btn-block" type="submit" (click)="login()" [disabled]="ativarSpinner">
+    <button class="btn btn-primary btn-block" type="submit" (click)="cadastrar()" [disabled]="ativarSpinner">
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativarSpinner"></span>
-      Acessar
+      Cadastrar
     </button>
-    <div>Novo por aqui? <a [routerLink]="['/cadastro-usuario']">Cadastre-se</a></div>
-    <!--<img src="..\..\assets\img\desafioFullLogo.png" />-->
-    <div class="alert alert-danger" *ngIf="mensagem">
-      {{mensagem}}
-    </div>
+    
+    <div><a [routerLink]="['/login']">Voltar</a></div>
 
   </form>
 

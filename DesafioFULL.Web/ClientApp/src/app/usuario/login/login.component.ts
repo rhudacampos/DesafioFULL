@@ -29,12 +29,12 @@ export class LoginComponent implements OnInit {
     this.ativarSpinner = true;
     this.usuarioServico.verificaUsuario(this.usuario)
       .subscribe(
-        usuario_json => {
+        retorno_json => {
           
-          this.usuarioServico.usuario = usuario_json;
+          this.usuarioServico.usuario = retorno_json;
 
           if (this.returnUrl == null) {
-            this.router.navigate(['/']);
+            this.router.navigate(['./']);
           } else {
             this.router.navigate([this.returnUrl]);
           }
@@ -42,9 +42,9 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
           
         },
-        err => {
-          console.log(err.error);
-          this.mensagem = err.error;
+        e => {
+          console.log(e.error);
+          this.mensagem = e.error;
           this.ativarSpinner = false;
         }
       );

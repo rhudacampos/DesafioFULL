@@ -14,6 +14,7 @@ import { LoginComponent } from './usuario/login/login.component';
 import { ClienteComponent } from "./cliente/cliente.component";
 import { GuardaRotas } from './autorizacao/guarda.rotas';
 import { UsuarioServico } from './servicos/usuario/usuario.servico';
+import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.component';
 
  
 @NgModule({
@@ -24,8 +25,8 @@ import { UsuarioServico } from './servicos/usuario/usuario.servico';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    ClienteComponent
-    
+    ClienteComponent,
+    CadastroUsuarioComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,7 +37,8 @@ import { UsuarioServico } from './servicos/usuario/usuario.servico';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'cliente', component: ClienteComponent, canActivate:[GuardaRotas] },
+      { path: 'cliente', component: ClienteComponent, canActivate: [GuardaRotas] },
+      { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
       
     ])
   ],

@@ -66,7 +66,7 @@ namespace DesafioFULL.Web.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.ToString());
+                return BadRequest(e.Message);
             }
         }
 
