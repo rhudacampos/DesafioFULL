@@ -1,11 +1,12 @@
 <!--<div class="text-center">-->
 <form class="form-group mb-4">
+
+  <h1 class="h4 mb-4 cadastro">Cadastro de Cliente</h1>
   <div class="card col-md-6">
     <div class="card-body">
 
-      <h1 class="h4 mb-4 cadastro">Cadastro de Usuário</h1>
-
       <div class="form-row">
+
         <div class="form-group col-md-6">
           <label for="inputNome">Nome</label>
           <input type="text" id="inputNome"
@@ -16,7 +17,7 @@
             'is-invalid':nome.invalid && (nome.dirty || nome.touched),
             'is-valid':nome.valid && (nome.dirty || nome.touched)
            }"
-                 [(ngModel)]="usuario.nome"
+                 [(ngModel)]="cliente.nome"
                  required />
           <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
             <div *ngIf="nome.errors.required">Nome deve ser informado </div>
@@ -29,46 +30,40 @@
                  name="sobreNome" placeholder=""
                  class="form-control mb-2 col"
                  #sobreNome="ngModel"
-                 [(ngModel)]="usuario.sobreNome" />
+                 [(ngModel)]="cliente.sobreNome" />
         </div>
+
       </div>
 
       <div class="form-row">
+
         <div class="form-group col-md-6">
-          <label for="inputEmail">Email</label>
-          <input type="email" id="inputEmail"
-                 name="email" placeholder="exemplo@mail.com"
-                 class="form-control mb-2"
-                 #email="ngModel"
+          <label for="inputCPF">CPF</label>
+          <input type="text" id="inputCPF"
+                 name="cpf" placeholder="000.000.000-00"
+                 class="form-control mb-2 col"
+                 maxlength="11"
+                 #cpf="ngModel"
                  [ngClass]="{
-            'is-invalid':email.invalid && (email.dirty || email.touched),
-            'is-valid':email.valid && (email.dirty || email.touched)
+            'is-invalid':nome.invalid && (nome.dirty || nome.touched),
+            'is-valid':nome.valid && (nome.dirty || nome.touched)
            }"
-                 [(ngModel)]="usuario.email"
-                 email
+                 (ngModelChange)="cliente.cpf=$event"
+                 [ngModel]="cliente.cpf | CPF"
                  required />
-          <div class="invalid-feedback mb-2" *ngIf="email.invalid && (email.dirty || email.touched)">
-            <div *ngIf="email.errors.required">Email deve ser informado </div>
-            <div *ngIf="email.errors.email">Email inválido </div>
+          <div class="invalid-feedback mb-2" *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
+            <div *ngIf="cpf.errors.required">CPF deve ser informado </div>
           </div>
+
         </div>
-
         <div class="form-group col-md-6">
-          <label for="inputSenha">Senha</label>
-          <input type="password" id="inputSenha"
-                 name="senha" placeholder=""
-                 class="form-control mb-2"
-                 #senha="ngModel"
-                 [ngClass]="{
-            'is-invalid':senha.invalid && (senha.dirty || senha.touched),
-            'is-valid':senha.valid && (senha.dirty || senha.touched)
-           }"
-                 [(ngModel)]="usuario.senha"
-                 required />
-
-          <div class="invalid-feedback mb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
-            <div *ngIf="senha.errors.required">Senha deve ser informada </div>
-          </div>
+          <label for="inputFone">Fone</label>
+          <input type="text" id="inputFone"
+                 name="fone" placeholder="(00)000000000"
+                 class="form-control mb-2 col"
+                 #sobreNome="ngModel"
+                 (ngModelChange)="cliente.fone=$event"
+                 [ngModel]="cliente.fone | foneMask" />
         </div>
       </div>
 
@@ -81,7 +76,7 @@
         </div>
 
         <div class="form-group col-md-3">
-          <div><a [routerLink]="['/login']">Voltar</a></div>
+          <div><a [routerLink]="['/']">Voltar</a></div>
         </div>
       </div>
 
@@ -89,7 +84,7 @@
         {{mensagem}}
       </div>
 
-      <div class="alert alert-success" *ngIf="usuarioCadastrado">
+      <div class="alert alert-success" *ngIf="clienteCadastrado">
         {{mensagem}}<a class="alert-link" [routerLink]="['/login']"> Clique aqui</a> para logar
       </div>
 

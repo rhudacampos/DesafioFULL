@@ -18,5 +18,23 @@ namespace DesafioFULL.Aplicacao.Serviços
         {
             return _repositorioUsuario.ObterPorAutenticacao(email, senha);
         }
+
+        public void Cadastrar(Usuario usuario)
+        {
+            try
+            {
+                var usuarioCadastrado = _repositorioUsuario.ObterPorEmail(usuario.Email);
+                if (usuarioCadastrado != null)
+                    throw new System.ArgumentException("Email de usuário já cadastrado no sistema");
+
+                _repositorioUsuario.Adicionar(usuario);
+
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+
+        }
     }
 }

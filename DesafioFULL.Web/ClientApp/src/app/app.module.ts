@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { CPFPipe } from './Pipe/cpf.pipe';
+import { FoneMaskPipe } from './Pipe/foneMask.pipe';
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -15,10 +18,14 @@ import { ClienteComponent } from "./cliente/cliente.component";
 import { GuardaRotas } from './autorizacao/guarda.rotas';
 import { UsuarioServico } from './servicos/usuario/usuario.servico';
 import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.component';
+import { CadastroClienteComponent } from './cliente/cadastro/cadastro.cliente.component';
+import { ClienteServico } from './servicos/cliente/cliente.servico';
 
  
 @NgModule({
   declarations: [
+    CPFPipe,
+    FoneMaskPipe,
     AppComponent,
     NavMenuComponent,
     HomeComponent,
@@ -26,7 +33,8 @@ import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.co
     FetchDataComponent,
     LoginComponent,
     ClienteComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    CadastroClienteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -39,10 +47,10 @@ import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.co
       { path: 'login', component: LoginComponent },
       { path: 'cliente', component: ClienteComponent, canActivate: [GuardaRotas] },
       { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
-      
+      { path: 'cadastro-cliente', component: CadastroClienteComponent/*, canActivate: [GuardaRotas]*/ },
     ])
   ],
-  providers: [UsuarioServico],
+  providers: [UsuarioServico, ClienteServico],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

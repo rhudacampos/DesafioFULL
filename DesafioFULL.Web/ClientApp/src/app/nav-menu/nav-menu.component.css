@@ -17,7 +17,18 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+/*#logoProjeto {
+  width: 100%;
+  cursor: pointer;
+}*/
+
+/*#logoPaschoalotto {
+  width: 500px;
+  cursor: pointer;
+}*/
+
 img {
   width: 30%;
   cursor: pointer;
 }
+

@@ -16,5 +16,10 @@ namespace DesafioFULL.Repositorio.Repositorios
         {
             return DesafioFULLContexto.Usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
         }
+
+        public Usuario ObterPorEmail(string email)
+        {
+            return DesafioFULLContexto.Usuarios.FirstOrDefault(u => u.Email == email);
+        }
     }
 }

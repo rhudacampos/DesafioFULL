@@ -1,6 +1,5 @@
 ﻿using DesafioFULL.Aplicacao.Interfaces;
 using DesafioFULL.Dominio.Entidades;
-using DesafioFULL.Dominio.Interfaces.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -35,18 +34,17 @@ namespace DesafioFULL.Web.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody]Usuario Usuario)
+        [HttpPost("cadastrar")]
+        public IActionResult Post([FromBody]Usuario usuario)
         {
             try
-            {
-                _appServicoUsuario.Adicionar(Usuario);
-                return Created("Usuario", Usuario);
+            { 
+                _appServicoUsuario.Cadastrar(usuario);
+                return Created("Usuario", usuario);
             }
             catch (Exception e)
             {
-
-                return BadRequest(e.ToString());
+                return BadRequest(e.Message);
             }
         }
 

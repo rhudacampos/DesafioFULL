@@ -30,8 +30,13 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\autorizacao\guarda.rotas.ts" />
+    <None Remove="ClientApp\src\app\cliente\cadastro\cadastro.cliente.component.ts" />
     <None Remove="ClientApp\src\app\cliente\cliente.component.ts" />
+    <None Remove="ClientApp\src\app\cpf.pipe.ts" />
+    <None Remove="ClientApp\src\app\modelo\cliente.ts" />
     <None Remove="ClientApp\src\app\modelo\usuario.ts" />
+    <None Remove="ClientApp\src\app\Pipe\foneMask.pipe.ts" />
+    <None Remove="ClientApp\src\app\servicos\cliente\cliente.servico.ts" />
     <None Remove="ClientApp\src\app\servicos\usuario\usuario.servico.ts" />
     <None Remove="ClientApp\src\app\usuario\cadastro\cadastro.usuario.component.ts" />
     <None Remove="ClientApp\src\app\usuario\login\login.component.ts" />
@@ -44,8 +49,15 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\autorizacao\guarda.rotas.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\cliente\cadastro\cadastro.cliente.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\cliente\cliente.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Pipe\foneMask.pipe.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\Pipe\cpf.pipe.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modelo\cliente.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\modelo\usuario.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\servicos\cliente\cliente.servico.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\servicos\usuario\usuario.servico.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\usuario\cadastro\cadastro.usuario.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\usuario\login\login.component.ts" />
@@ -55,10 +67,6 @@
     <Content Update="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\servicos\cliente\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

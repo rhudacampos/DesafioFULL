@@ -13,6 +13,23 @@ namespace DesafioFULL.Aplicacao.Serviços
         {
             _repositorioCliente = repositorioCliente;
         }
-        
+
+        public void Cadastrar(Cliente cliente)
+        {
+            try
+            {
+                var clienteCadastrado = _repositorioCliente.ObterPorCPF(cliente.CPF);
+                if (clienteCadastrado != null)
+                    throw new System.ArgumentException("CPF de cliente já cadastrado no sistema");
+
+                _repositorioCliente.Adicionar(cliente);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+
+        }
+
     }
 }
