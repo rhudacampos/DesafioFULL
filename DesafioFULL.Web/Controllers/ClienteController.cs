@@ -1,5 +1,5 @@
-﻿using DesafioFULL.Dominio.Entidades;
-using DesafioFULL.Dominio.Interfaces.Repositorios;
+﻿using DesafioFULL.Aplicacao.Interfaces;
+using DesafioFULL.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -9,10 +9,10 @@ namespace DesafioFULL.Web.Controllers
     [Route("[controller]")]
     public class ClienteController : Controller
     {
-        private readonly IRepositorioCliente _repositorioCliente;
-        public ClienteController(IRepositorioCliente repositorioCliente)
+        private readonly IAppServicoCliente _appServicoCliente;
+        public ClienteController(IAppServicoCliente appServicoCliente)
         {
-            _repositorioCliente = repositorioCliente;
+            _appServicoCliente = appServicoCliente;
         }
 
         [HttpGet]
@@ -20,7 +20,7 @@ namespace DesafioFULL.Web.Controllers
         {
             try
             {
-                return Ok(_repositorioCliente.ObterTodos());
+                return Ok(_appServicoCliente.ObterTodos());
                 //if(condicao == false)
                 //{
                 //    return BadRequest("");
@@ -38,7 +38,7 @@ namespace DesafioFULL.Web.Controllers
         {
             try
             {
-                _repositorioCliente.Adicionar(cliente);
+                _appServicoCliente.Adicionar(cliente);
                 return Created("cliente", cliente);
             }
             catch (Exception e)

@@ -1,51 +1,56 @@
 <div class="text-center">
   <form class="form-signin mb-2">
-    <h1 class="h4 mb-2 login">Login de Usuário</h1>
+    <div class="card">
+      <div class="card-body">
 
-    <label for="inputEmail" class="sr-only mb-2">Email</label> <!--label para Acessibilidade-->
-    <input type="email" id="inputEmail"
-           name="email" placeholder="Informe o seu Email"
-           class="form-control mb-2"
-           #email="ngModel"
-           [ngClass]="{
+        <h1 class="h4 mb-2 login">Login de Usuário</h1>
+        <div class="card-body">
+
+          <label for="inputEmail" class="sr-only mb-2">Email</label> <!--label para Acessibilidade-->
+          <input type="email" id="inputEmail"
+                 name="email" placeholder="Informe o seu Email"
+                 class="form-control mb-2"
+                 #email="ngModel"
+                 [ngClass]="{
             'is-invalid':email.invalid && (email.dirty || email.touched),
             'is-valid':email.valid && (email.dirty || email.touched)
            }"
-           [(ngModel)]="usuario.email"
-           email
-           required />
+                 [(ngModel)]="usuario.email"
+                 email
+                 required />
 
-    <div class="invalid-feedback mb-2" *ngIf="email.invalid && (email.dirty || email.touched)">
-      <div *ngIf="email.errors.required">Email deve ser informado </div>
-      <div *ngIf="email.errors.email">Email inválido </div>
-    </div>
+          <div class="invalid-feedback mb-3" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors.required">Email deve ser informado </div>
+            <div *ngIf="email.errors.email">Email inválido </div>
+          </div>
 
-    <label for="inputSenha" class="sr-only">Senha</label>
-    <input type="password" id="inputSenha"
-           name="senha" placeholder="Senha"
-           class="form-control mb-2"
-           #senha="ngModel"
-           [ngClass]="{
+          <label for="inputSenha" class="sr-only">Senha</label>
+          <input type="password" id="inputSenha"
+                 name="senha" placeholder="Senha"
+                 class="form-control mb-2"
+                 #senha="ngModel"
+                 [ngClass]="{
             'is-invalid':senha.invalid && (senha.dirty || senha.touched),
             'is-valid':senha.valid && (senha.dirty || senha.touched)
            }"
-           [(ngModel)]="usuario.senha"
-           required />
+                 [(ngModel)]="usuario.senha"
+                 required />
 
-    <div class="invalid-feedback mb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
-      <div *ngIf="senha.errors.required">Senha deve ser informada </div>
+          <div class="invalid-feedback mb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+            <div *ngIf="senha.errors.required">Senha deve ser informada </div>
+          </div>
+
+          <button class="btn btn-primary btn-block mb-2" type="submit" (click)="login()" [disabled]="ativarSpinner">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativarSpinner"></span>
+            Acessar
+          </button>
+          <div>Novo por aqui? <a [routerLink]="['/cadastro-usuario']">Cadastre-se</a></div>
+          <!--<img src="..\..\assets\img\desafioFullLogo.png" />-->
+          <div class="alert alert-danger" *ngIf="mensagem">
+            {{mensagem}}
+          </div>
+        </div>
+      </div>
     </div>
-
-    <button class="btn btn-primary btn-block" type="submit" (click)="login()" [disabled]="ativarSpinner">
-      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativarSpinner"></span>
-      Acessar
-    </button>
-    <div>Novo por aqui? <a [routerLink]="['/cadastro-usuario']">Cadastre-se</a></div>
-    <!--<img src="..\..\assets\img\desafioFullLogo.png" />-->
-    <div class="alert alert-danger" *ngIf="mensagem">
-      {{mensagem}}
-    </div>
-
   </form>
-
 </div>

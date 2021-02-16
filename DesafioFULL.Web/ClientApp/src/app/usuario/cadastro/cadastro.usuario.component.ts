@@ -21,11 +21,11 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   public cadastrar() {
-    this.usuarioServico.cadastrarUsuario(this.usuario)
-      .subscribe(
-        retorno_json => { },
-        e => { }
-      );
+    //this.usuarioServico.cadastrarUsuario(this.usuario)
+    //  .subscribe(
+    //    retorno_json => { },
+    //    e => { }
+    //  );
   }
   
 }

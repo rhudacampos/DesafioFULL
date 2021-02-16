@@ -1,8 +1,8 @@
 {
   "ConnectionStrings": {
     "SqlServerConnection": "",
-    "MySqlConnection": "Persist Security Info=False;server=localhost;database=DesafioFull;uid=root;password=systemfrg2007;AllowUserVariables=True;port=3307"
-    //"MySqlConnection": "server=localhost;uid=root;pwd=rhuda123;database=DesafioFull"
+    //"MySqlConnection": "Persist Security Info=False;server=localhost;database=DesafioFull;uid=root;password=systemfrg2007;AllowUserVariables=True;port=3307"
+    "MySqlConnection": "server=localhost;uid=root;pwd=rhuda123;database=DesafioFull"
   }
 
 }
