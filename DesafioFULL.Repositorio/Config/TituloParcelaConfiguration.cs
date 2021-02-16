@@ -9,12 +9,17 @@ namespace DesafioFULL.Repositorio.Config
         public void Configure(EntityTypeBuilder<TituloParcela> builder)
         {
             builder.HasKey(tp => tp.Id);
-            
-            builder.Property(tp => tp.Vencimento)
-                .IsRequired();
 
             builder.Property(tp => tp.VlrOriginal)
+                .HasColumnType("decimal(19,4)")
+                .IsRequired(); 
+
+            builder.Property(tp => tp.VlrCorrigido)
+                .HasColumnType("decimal(19,4)"); 
+
+            builder.Property(tp => tp.Vencimento)
                 .IsRequired();
+            
         }
     }
 }

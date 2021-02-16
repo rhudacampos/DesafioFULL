@@ -17,8 +17,6 @@ namespace DesafioFULL.Dominio.Entidades
 
         public override void Validar()
         {
-            LimparMensagensValidacao();
-
             if (string.IsNullOrEmpty(Nome))
                 AdicionarMensagemValidacao("Nome não pode ficar vazio");
                

@@ -50,7 +50,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\autorizacao\guarda.rotas.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\cliente\cadastro\cadastro.cliente.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\cliente\cliente.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\cliente\listagem\listagem.cliente.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Pipe\foneMask.pipe.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

@@ -14,12 +14,13 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
 import { LoginComponent } from './usuario/login/login.component';
-import { ClienteComponent } from "./cliente/cliente.component";
 import { GuardaRotas } from './autorizacao/guarda.rotas';
 import { UsuarioServico } from './servicos/usuario/usuario.servico';
 import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.component';
+import { ListagemClienteComponent } from './cliente/listagem/listagem.cliente.component';
 import { CadastroClienteComponent } from './cliente/cadastro/cadastro.cliente.component';
 import { ClienteServico } from './servicos/cliente/cliente.servico';
+
 
  
 @NgModule({
@@ -32,8 +33,8 @@ import { ClienteServico } from './servicos/cliente/cliente.servico';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    ClienteComponent,
     CadastroUsuarioComponent,
+    ListagemClienteComponent,
     CadastroClienteComponent
   ],
   imports: [
@@ -45,8 +46,8 @@ import { ClienteServico } from './servicos/cliente/cliente.servico';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'cliente', component: ClienteComponent, canActivate: [GuardaRotas] },
       { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
+      { path: 'clientes', component: ListagemClienteComponent, /*canActivate: [GuardaRotas] */},
       { path: 'cadastro-cliente', component: CadastroClienteComponent/*, canActivate: [GuardaRotas]*/ },
     ])
   ],

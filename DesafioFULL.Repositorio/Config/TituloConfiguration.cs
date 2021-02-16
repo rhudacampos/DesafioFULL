@@ -14,10 +14,16 @@ namespace DesafioFULL.Repositorio.Config
             builder.Property(t => t.ClienteId)
                 .IsRequired();
 
+            builder.Property(t => t.VlrOriginal)
+                .HasColumnType("decimal(19,4)"); 
+
+            builder.Property(t => t.VlrCorrigido)
+                .HasColumnType("decimal(19,4)");
+
             builder.HasIndex(t => t.ClienteId);
 
             builder.HasMany(t => t.Parcelas)
-                          .WithOne(p => p.Titulo);
+                .WithOne(p => p.Titulo);
 
         }
     }

@@ -17,15 +17,23 @@ namespace DesafioFULL.Dominio.Entidades
             mensagemValidacao.Clear();
         }
 
-        protected void AdicionarMensagemValidacao(string mensagem)
+        public void AdicionarMensagemValidacao(string mensagem)
         {
             mensagemValidacao.Add(mensagem);
         }
 
+        public string ObterMensagensValidacao()
+        {
+            return string.Join(". ", mensagemValidacao);
+        }
+
+
         public abstract void Validar();
-        protected bool EhValido
+        public bool EhValido
         {
             get { return !mensagemValidacao.Any(); }
         }
+
+        
     }
 }
