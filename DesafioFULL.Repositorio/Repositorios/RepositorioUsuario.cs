@@ -14,12 +14,12 @@ namespace DesafioFULL.Repositorio.Repositorios
 
         public Usuario ObterPorAutenticacao(string email, string senha)
         {
-            return DesafioFULLContexto.Usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
+            return desafioFULLContexto.Usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
         }
 
         public Usuario ObterPorEmail(string email)
         {
-            return DesafioFULLContexto.Usuarios.FirstOrDefault(u => u.Email == email);
+            return desafioFULLContexto.Usuarios.FirstOrDefault(u => u.Email == email);
         }
     }
 }

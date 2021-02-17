@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 
-import { LoginComponent } from './usuario/login/login.component';
 import { GuardaRotas } from './autorizacao/guarda.rotas';
+import { LoginComponent } from './usuario/login/login.component';
 import { UsuarioServico } from './servicos/usuario/usuario.servico';
-import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.component';
 import { ListagemClienteComponent } from './cliente/listagem/listagem.cliente.component';
-import { CadastroClienteComponent } from './cliente/cadastro/cadastro.cliente.component';
+import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.component';
 import { ClienteServico } from './servicos/cliente/cliente.servico';
+import { CadastroClienteComponent } from './cliente/cadastro/cadastro.cliente.component';
+import { ListagemTituloComponent } from './titulo/listagem/listagem.titulo.component';
+import { TituloServico } from './servicos/titulo/titulo.servico';
 
 
  
@@ -31,7 +33,8 @@ import { ClienteServico } from './servicos/cliente/cliente.servico';
     LoginComponent,
     CadastroUsuarioComponent,
     ListagemClienteComponent,
-    CadastroClienteComponent
+    CadastroClienteComponent,
+    ListagemClienteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,9 +46,11 @@ import { ClienteServico } from './servicos/cliente/cliente.servico';
       { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
       { path: 'cliente', component: ListagemClienteComponent/*, canActivate: [GuardaRotas] */},
       { path: 'cadastro-cliente', component: CadastroClienteComponent/*, canActivate: [GuardaRotas]*/ },
+      { path: 'titulo', component: ListagemTituloComponent/*, canActivate: [GuardaRotas] */ },
+      //{ path: 'cadastro-titulo', component: CadastroTituloComponent/*, canActivate: [GuardaRotas]*/ },
     ])
   ],
-  providers: [UsuarioServico, ClienteServico],
+  providers: [UsuarioServico, ClienteServico, TituloServico],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

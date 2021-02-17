@@ -3,14 +3,16 @@ using System;
 using DesafioFULL.Repositorio.Contexto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DesafioFULL.Repositorio.Migrations
 {
     [DbContext(typeof(DesafioFULLContexto))]
-    partial class DesafioFULLContextoModelSnapshot : ModelSnapshot
+    [Migration("20210217150954_AdicionadoCamposValorJuroMultaEControleVerificacao")]
+    partial class AdicionadoCamposValorJuroMultaEControleVerificacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

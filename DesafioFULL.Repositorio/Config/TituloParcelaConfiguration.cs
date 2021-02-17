@@ -12,7 +12,13 @@ namespace DesafioFULL.Repositorio.Config
 
             builder.Property(tp => tp.VlrOriginal)
                 .HasColumnType("decimal(19,4)")
-                .IsRequired(); 
+                .IsRequired();
+
+            builder.Property(tp => tp.VlrJuros)
+                .HasColumnType("decimal(19,4)");
+
+            builder.Property(tp => tp.VlrMulta)
+                .HasColumnType("decimal(19,4)");
 
             builder.Property(tp => tp.VlrCorrigido)
                 .HasColumnType("decimal(19,4)"); 

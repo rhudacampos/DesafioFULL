@@ -14,6 +14,8 @@ namespace DesafioFULL.Dominio.Entidades
         public decimal PerJuros { get; set; }
         public decimal PerMulta { get; set; }
         public decimal VlrOriginal { get; set; }
+        public decimal VlrJuros { get; set; }
+        public decimal VlrMulta { get; set; }
         public decimal VlrCorrigido { get; set; }
         public int DiasEmAtraso { get; set; }
 

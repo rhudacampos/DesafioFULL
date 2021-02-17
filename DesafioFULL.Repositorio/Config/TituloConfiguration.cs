@@ -15,7 +15,13 @@ namespace DesafioFULL.Repositorio.Config
                 .IsRequired();
 
             builder.Property(t => t.VlrOriginal)
-                .HasColumnType("decimal(19,4)"); 
+                .HasColumnType("decimal(19,4)");
+
+            builder.Property(t => t.VlrJuros)
+                .HasColumnType("decimal(19,4)");
+
+            builder.Property(t => t.VlrMulta)
+                .HasColumnType("decimal(19,4)");
 
             builder.Property(t => t.VlrCorrigido)
                 .HasColumnType("decimal(19,4)");

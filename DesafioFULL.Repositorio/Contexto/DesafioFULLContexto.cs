@@ -17,16 +17,18 @@ namespace DesafioFULL.Repositorio.Contexto
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
             modelBuilder.ApplyConfiguration(new TituloConfiguration());
             modelBuilder.ApplyConfiguration(new TituloParcelaConfiguration());
+            modelBuilder.ApplyConfiguration(new TituloVerificacaoConfiguration());
 
-            modelBuilder.Entity<Usuario>().HasData(
-                new Usuario
-                {
-                    Id = 1,
-                    Email = "admin@admin.com",
-                    Senha = "admin",
-                    Nome = "Administrador",
-                    SobreNome = "Admin"
-                });
+            //adicionado para incluir no migration
+            //modelBuilder.Entity<Usuario>().HasData(
+            //    new Usuario
+            //    {
+            //        Id = 1,
+            //        Email = "admin@admin.com",
+            //        Senha = "admin",
+            //        Nome = "Administrador",
+            //        SobreNome = "Admin"
+            //    });
 
             base.OnModelCreating(modelBuilder);
         }
@@ -35,6 +37,7 @@ namespace DesafioFULL.Repositorio.Contexto
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Titulo> Titulos { get; set; }
         public DbSet<TituloParcela> TituloParcelas { get; set; }
-        
+        public DbSet<TituloVerificacao> TituloVerificacoes { get; set; }
+
     }
 }

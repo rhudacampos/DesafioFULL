@@ -16,12 +16,12 @@ namespace DesafioFULL.Repositorio.Repositorios
             // para validar cpf cadasrado no caso de uma atualização de cadastro
             if (cliente.Id > 0)
             {
-                return DesafioFULLContexto.Clientes.FirstOrDefault(
+                return desafioFULLContexto.Clientes.FirstOrDefault(
                     c => c.CPF == cliente.CPF && c.Id != cliente.Id);
             }
             else
             {
-                return DesafioFULLContexto.Clientes.FirstOrDefault(c => c.CPF == cliente.CPF);
+                return desafioFULLContexto.Clientes.FirstOrDefault(c => c.CPF == cliente.CPF);
             }
             
         }

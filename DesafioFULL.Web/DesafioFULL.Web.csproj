@@ -34,10 +34,14 @@
     <None Remove="ClientApp\src\app\cliente\cliente.component.ts" />
     <None Remove="ClientApp\src\app\cpf.pipe.ts" />
     <None Remove="ClientApp\src\app\modelo\cliente.ts" />
+    <None Remove="ClientApp\src\app\modelo\titulo.ts" />
+    <None Remove="ClientApp\src\app\modelo\tituloParcela.ts" />
     <None Remove="ClientApp\src\app\modelo\usuario.ts" />
     <None Remove="ClientApp\src\app\Pipe\foneMask.pipe.ts" />
     <None Remove="ClientApp\src\app\servicos\cliente\cliente.servico.ts" />
+    <None Remove="ClientApp\src\app\servicos\titulo\titulo.servico.ts" />
     <None Remove="ClientApp\src\app\servicos\usuario\usuario.servico.ts" />
+    <None Remove="ClientApp\src\app\titulo\listagem\listagem.titulo.component.ts" />
     <None Remove="ClientApp\src\app\usuario\cadastro\cadastro.usuario.component.ts" />
     <None Remove="ClientApp\src\app\usuario\login\login.component.ts" />
   </ItemGroup>
@@ -51,6 +55,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\autorizacao\guarda.rotas.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\cliente\cadastro\cadastro.cliente.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\cliente\listagem\listagem.cliente.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modelo\tituloParcela.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modelo\titulo.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Pipe\foneMask.pipe.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -58,7 +64,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\modelo\cliente.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\modelo\usuario.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\servicos\cliente\cliente.servico.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\servicos\titulo\titulo.servico.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\servicos\usuario\usuario.servico.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\titulo\listagem\listagem.titulo.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\usuario\cadastro\cadastro.usuario.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\usuario\login\login.component.ts" />
   </ItemGroup>
@@ -67,6 +75,10 @@
     <Content Update="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\titulo\manutencao\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
