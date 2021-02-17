@@ -60,7 +60,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\Pipe\foneMask.pipe.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\Pipe\cpf.pipe.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Pipe\cpf.pipe.ts">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\modelo\cliente.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\modelo\usuario.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\servicos\cliente\cliente.servico.ts" />
@@ -79,6 +81,12 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\titulo\manutencao\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\src\assets\img\desafioFullLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

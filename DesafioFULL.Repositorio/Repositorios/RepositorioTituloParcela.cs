@@ -12,7 +12,7 @@ namespace DesafioFULL.Repositorio.Repositorios
         {
         }
 
-        public List<TituloParcela> ObterPorTitulo(Titulo titulo)
+        IList<TituloParcela> IRepositorioTituloParcela.ObterPorTitulo(Titulo titulo)
         {
             var retorno = _desafioFULLContexto.TituloParcelas
                     .Where(tp => tp.TituloId == titulo.Id);

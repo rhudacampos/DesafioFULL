@@ -10,6 +10,10 @@ namespace DesafioFULL.Aplicacao.Interfaces
         void ValidarECadastrar(Titulo titulo);
         void ValidarEAtualizar(Titulo titulo);
         IEnumerable<Titulo> ExcluirERetornarLista(Titulo titulo);
+        TituloParcela CalcularTituloParcela(ref Titulo titulo, TituloParcela tituloParcela);
+        Titulo CalcularTitulo(Titulo titulo);
+        void ProcessarCalculoTitulos();
+        bool CalculoEfetuado();
 
     }
 }

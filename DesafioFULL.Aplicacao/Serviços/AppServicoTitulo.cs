@@ -15,7 +15,7 @@ namespace DesafioFULL.Aplicacao.Serviços
         private readonly IRepositorioTituloParcela _repositorioTituloParcela;
         private readonly IRepositorioTituloVerificacao _repositorioTituloVerificacao;
 
-        public AppServicoTitulo(DesafioFULLContexto desafioFULLContexto, 
+        public AppServicoTitulo(DesafioFULLContexto desafioFULLContexto,
             IRepositorioTitulo repositorioTitulo,
             IRepositorioTituloParcela repositorioTituloParcela,
             IRepositorioTituloVerificacao repositorioTituloVerificacao) : base(desafioFULLContexto)
@@ -86,35 +86,31 @@ namespace DesafioFULL.Aplicacao.Serviços
                 };
 
                 var listaTitulos = _repositorioTitulo.ObterTodos();
-                //var retornoLista = listaTitulos
-                //    .Select(t => new ViewModelTitulo
-                //    {
-                //        id = t.Id,
-                //        clienteId = t.ClienteId,
-                //        qtdeParcelas = t.QtdeParcelas,
-                //        perJuros = t.PerJuros,
-                //        perMulta = t.PerMulta,
-                //        vlrOriginal = t.VlrOriginal,
-                //        vlrCorrigido = t.VlrCorrigido,
-                //        nomeCliente = t.Cliente.Nome,
-                //        vlrJuros = t.VlrOriginal * t.PerJuros
-                //    }
-                //{
-                //    ProdutoId = x.produto.Id,
-                //    ImportacaoProdutoId = importacaoProduto.Id
-                //})?.ToList();
-                return null;
+                var retornoLista = listaTitulos
+                    .Select(t => new ViewModelTitulo
+                    {
+                        id = t.Id,
+                        clienteId = t.ClienteId,
+                        qtdeParcelas = t.QtdeParcelas,
+                        perJuros = t.PerJuros,
+                        perMulta = t.PerMulta,
+                        vlrOriginal = t.VlrOriginal,
+                        vlrCorrigido = t.VlrCorrigido,
+                        nomeCliente = t.Cliente.Nome,
+                        vlrJuros = t.VlrJuros,
+                        vlrMulta = t.VlrMulta,
+                        diasEmAtraso = t.DiasEmAtraso
+                    });
 
-
+                return retornoLista;
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }
 
-        private bool CalculoEfetuado()
+        public bool CalculoEfetuado()
         {
             try
             {
@@ -130,7 +126,7 @@ namespace DesafioFULL.Aplicacao.Serviços
             }
         }
 
-        private void ProcessarCalculoTitulos()
+        public void ProcessarCalculoTitulos()
         {
             try
             {
@@ -208,6 +204,11 @@ namespace DesafioFULL.Aplicacao.Serviços
 
             return tituloParcela;
         }
+
+
+
+
+
 
     }
 }

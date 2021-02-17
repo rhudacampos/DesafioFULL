@@ -1,5 +1,5 @@
-﻿using DesafioFULL.Dominio.Entidades;
-using DesafioFULL.Dominio.Interfaces.Repositorios;
+﻿using DesafioFULL.Aplicacao.Interfaces;
+using DesafioFULL.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -9,10 +9,10 @@ namespace DesafioFULL.Web.Controllers
     [Route("[controller]")]
     public class TituloController : Controller
     {
-        private readonly IRepositorioTitulo _repositorioTitulo;
-        public TituloController(IRepositorioTitulo repositorioTitulo)
+        private readonly IAppServicoTitulo _appServicoTitulo;
+        public TituloController(IAppServicoTitulo appServicoTitulo)
         {
-            _repositorioTitulo = repositorioTitulo;
+            _appServicoTitulo = appServicoTitulo;
         }
 
         [HttpGet]
@@ -20,11 +20,7 @@ namespace DesafioFULL.Web.Controllers
         {
             try
             {
-                return Ok(_repositorioTitulo.ObterTodos());
-                //if(condicao == false)
-                //{
-                //    return BadRequest("");
-                //}
+                return Ok(_appServicoTitulo.ObterListagemTitulos());
             }
             catch (Exception e)
             {
@@ -38,7 +34,7 @@ namespace DesafioFULL.Web.Controllers
         {
             try
             {
-                _repositorioTitulo.Adicionar(Titulo);
+                _appServicoTitulo.Adicionar(Titulo);
                 return Created("titulo", Titulo);
             }
             catch (Exception e)
