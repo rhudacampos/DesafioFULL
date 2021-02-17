@@ -8,6 +8,7 @@ namespace DesafioFULL.Repositorio.Contexto
     {
         public DesafioFULLContexto(DbContextOptions options) : base(options)
         {
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

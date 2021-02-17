@@ -11,9 +11,19 @@ namespace DesafioFULL.Repositorio.Repositorios
         {
         }
 
-        public Cliente ObterPorCPF(string cpf)
+        public Cliente ObterPorCPF(Cliente cliente)
         {
-            return DesafioFULLContexto.Clientes.FirstOrDefault(c => c.CPF == cpf);
+            // para validar cpf cadasrado no caso de uma atualização de cadastro
+            if (cliente.Id > 0)
+            {
+                return DesafioFULLContexto.Clientes.FirstOrDefault(
+                    c => c.CPF == cliente.CPF && c.Id != cliente.Id);
+            }
+            else
+            {
+                return DesafioFULLContexto.Clientes.FirstOrDefault(c => c.CPF == cliente.CPF);
+            }
+            
         }
     }
 }

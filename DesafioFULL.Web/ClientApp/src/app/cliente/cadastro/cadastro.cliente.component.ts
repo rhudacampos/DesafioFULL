@@ -1,4 +1,5 @@
 import { Component } from "@angular/core"
+import { Router } from "@angular/router";
 import { Cliente } from "../../modelo/cliente";
 import { ClienteServico } from "../../servicos/cliente/cliente.servico";
 
@@ -14,14 +15,22 @@ export class CadastroClienteComponent {
   public ativarSpinner: boolean;
   public alerta: boolean;
   public mensagem: string;
+  public cadastrarAtualizar: string;
   public clienteCadastrado: boolean;
- 
-  constructor(private clienteServico: ClienteServico) {
+
+  constructor(private clienteServico: ClienteServico, private router: Router) {
 
   }
 
   ngOnInit(): void {
-    this.cliente = new Cliente();
+    var clienteSessao = sessionStorage.getItem("clienteSessao");
+    if (clienteSessao) {
+      this.cliente = JSON.parse(clienteSessao);
+      this.cadastrarAtualizar = 'Atualizar';
+    } else {
+      this.cliente = new Cliente();
+      this.cadastrarAtualizar = 'Cadastrar';
+    }
   }
 
 
@@ -34,6 +43,7 @@ export class CadastroClienteComponent {
           this.mensagem = "Cliente cadastrado com sucesso";
           this.ativarSpinner = false;
           this.alerta = false;
+          this.router.navigate(['/cliente']);
         },
         e => {
           this.alerta = true;

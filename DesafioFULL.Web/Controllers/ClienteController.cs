@@ -43,12 +43,20 @@ namespace DesafioFULL.Web.Controllers
             }
         }
 
-        [HttpPost("cadastrar")]
+        [HttpPost]
         public IActionResult Post([FromBody] Cliente cliente)
         {
             try
             {
-                _appServicoCliente.Cadastrar(cliente);
+                if (cliente.Id > 0)
+                {
+                    _appServicoCliente.ValidarEAtualizar(cliente);
+                }
+                else
+                {
+                    _appServicoCliente.ValidarECadastrar(cliente);
+                }
+                
                 return Created("Cliente", cliente);
             }
             catch (Exception e)
@@ -57,27 +65,14 @@ namespace DesafioFULL.Web.Controllers
             }
         }
 
-        [HttpPost("atualizar")]
-        public IActionResult Atualizar([FromBody] Cliente cliente)
-        {
-            try
-            {
-                _appServicoCliente.Atualizar(cliente);
-                return Created("Cliente", cliente);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
 
         [HttpPost("excluir")]
         public IActionResult Excluir([FromBody] Cliente cliente)
         {
             try
             {
-                _appServicoCliente.Remover(cliente);
-                return Created("Cliente", cliente);
+                var retorno = _appServicoCliente.ExcluirERetornarLista(cliente);
+                return Json(retorno);
             }
             catch (Exception e)
             {

@@ -1,0 +1,45 @@
+<p *ngIf="!clientes">Carregando Clientes</p>
+
+<div class="card" *ngIf="clientes">
+  <div class="card-body">
+
+    <h1 class="h4 titulo">Clientes</h1>
+
+    <span class="table-add float-right mb-2 mr-2">
+      <a class="text-success">
+        <button class="btn btn-primary btn-block" type="submit" (click)="adicionarCliente()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+          </svg>
+        </button>
+      </a>
+    </span>
+
+    <table class="table table-hover" *ngIf="clientes">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>CPF</th>
+          <th>Fone</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of clientes">
+          <th>{{c.nome}} </th>
+          <th>{{c.sobreNome}} </th>
+          <th>{{c.cpf}} </th>
+          <th>{{c.fone}} </th>
+          <th><button class="btn btn-success btn-sm" (click)="editarCliente(c)">Editar</button></th>
+          <th><button class="btn btn-danger btn-sm" (click)="excluirCliente(c)">Excluir</button></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+

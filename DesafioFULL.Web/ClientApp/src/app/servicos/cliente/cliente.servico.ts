@@ -24,15 +24,15 @@ export class ClienteServico implements OnInit {
   }
 
   public cadastrarCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(this.baseURL + "cliente/cadastrar", JSON.stringify(cliente), { headers: this.headers });
+    return this.http.post<Cliente>(this.baseURL + "cliente", JSON.stringify(cliente), { headers: this.headers });
   }
 
   public atualizarCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(this.baseURL + "cliente/atualizar", JSON.stringify(cliente), { headers: this.headers });
+    return this.http.post<Cliente>(this.baseURL + "cliente", JSON.stringify(cliente), { headers: this.headers });
   }
 
-  public excluirCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(this.baseURL + "cliente/excluir", JSON.stringify(cliente), { headers: this.headers });
+  public excluirCliente(cliente: Cliente): Observable<Cliente[]> {
+    return this.http.post<Cliente[]>(this.baseURL + "cliente/excluir", JSON.stringify(cliente), { headers: this.headers });
   }
 
   public obterTodosClientes(): Observable<Cliente[]> {

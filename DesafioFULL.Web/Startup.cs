@@ -18,7 +18,7 @@ namespace DesafioFULL.Web
         public Startup(IConfiguration configuration)
         {
             var builder = new ConfigurationBuilder();
-            builder.AddJsonFile("config.json", optional:false, reloadOnChange: true); 
+            builder.AddJsonFile("config.json", optional: false, reloadOnChange: true);
 
             Configuration = builder.Build();
         }
@@ -29,19 +29,21 @@ namespace DesafioFULL.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
+            //.AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             var connectionString = Configuration.GetConnectionString("MySqlConnection");
             services.AddDbContext<DesafioFULLContexto>(
                 option => option
                             //.UseLazyLoadingProxies() 
-                            .UseMySql(connectionString, 
-                                      m => m.MigrationsAssembly("DesafioFULL.Repositorio") ));
-            
+                            .UseMySql(connectionString,
+                                      m => m.MigrationsAssembly("DesafioFULL.Repositorio")));
+
             services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
             services.AddScoped<IAppServicoUsuario, AppServicoUsuario>();
             services.AddScoped<IRepositorioCliente, RepositorioCliente>();
             services.AddScoped<IAppServicoCliente, AppServicoCliente>();
-                        
+
             //services.AddScoped<IRepositorioTituloParcela, RepositorioTituloParcela>();
 
             // In production, the Angular files will be served from this directory

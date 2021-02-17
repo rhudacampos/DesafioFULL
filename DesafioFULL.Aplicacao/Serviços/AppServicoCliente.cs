@@ -2,6 +2,7 @@
 using DesafioFULL.Dominio.Entidades;
 using DesafioFULL.Dominio.Interfaces.Repositorios;
 using DesafioFULL.Repositorio.Contexto;
+using System.Collections.Generic;
 
 namespace DesafioFULL.Aplicacao.Serviços
 {
@@ -14,12 +15,12 @@ namespace DesafioFULL.Aplicacao.Serviços
             _repositorioCliente = repositorioCliente;
         }
 
-        public void Cadastrar(Cliente cliente)
+        public void ValidarECadastrar(Cliente cliente)
         {
             try
             {
-                var clienteCadastrado = _repositorioCliente.ObterPorCPF(cliente.CPF);
-                if (clienteCadastrado != null)
+                var cpfCadastrado = _repositorioCliente.ObterPorCPF(cliente);
+                if (cpfCadastrado != null)
                     cliente.AdicionarMensagemValidacao("CPF de cliente já cadastrado no sistema");
 
                 cliente.Validar();
@@ -35,6 +36,41 @@ namespace DesafioFULL.Aplicacao.Serviços
                 throw;
             }
 
+        }
+
+        public void ValidarEAtualizar(Cliente cliente)
+        {
+            try
+            {
+                var cpfCadastrado = _repositorioCliente.ObterPorCPF(cliente);
+                if (cpfCadastrado != null)
+                    cliente.AdicionarMensagemValidacao("Este CPF já existe cadastrado no sistema");
+
+                cliente.Validar();
+                if (!cliente.EhValido)
+                {
+                    throw new System.ArgumentException(cliente.ObterMensagensValidacao());
+                }
+
+                _repositorioCliente.Atualizar(cliente);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<Cliente> ExcluirERetornarLista(Cliente cliente)
+        {
+            try
+            {
+                _repositorioCliente.Remover(cliente);
+                return _repositorioCliente.ObterTodos();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
 
     }
