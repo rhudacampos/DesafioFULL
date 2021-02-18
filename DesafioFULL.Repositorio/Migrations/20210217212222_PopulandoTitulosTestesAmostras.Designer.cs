@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioFULL.Repositorio.Migrations
 {
     [DbContext(typeof(DesafioFULLContexto))]
-    [Migration("20210217150954_AdicionadoCamposValorJuroMultaEControleVerificacao")]
-    partial class AdicionadoCamposValorJuroMultaEControleVerificacao
+    [Migration("20210217212222_PopulandoTitulosTestesAmostras")]
+    partial class PopulandoTitulosTestesAmostras
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,16 @@ namespace DesafioFULL.Repositorio.Migrations
                         .IsUnique();
 
                     b.ToTable("Clientes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CPF = "06734084000",
+                            Fone = "14999999999",
+                            Nome = "Fulano",
+                            SobreNome = "Beltrano"
+                        });
                 });
 
             modelBuilder.Entity("DesafioFULL.Dominio.Entidades.Titulo", b =>
@@ -88,6 +98,21 @@ namespace DesafioFULL.Repositorio.Migrations
                     b.HasIndex("ClienteId");
 
                     b.ToTable("Titulos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            ClienteId = 1L,
+                            DiasEmAtraso = 0,
+                            PerJuros = 1m,
+                            PerMulta = 2m,
+                            QtdeParcelas = 0,
+                            VlrCorrigido = 0m,
+                            VlrJuros = 0m,
+                            VlrMulta = 0m,
+                            VlrOriginal = 300m
+                        });
                 });
 
             modelBuilder.Entity("DesafioFULL.Dominio.Entidades.TituloParcela", b =>
@@ -122,6 +147,41 @@ namespace DesafioFULL.Repositorio.Migrations
                     b.HasIndex("TituloId");
 
                     b.ToTable("TituloParcelas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            NumParcela = 1,
+                            TituloId = 1L,
+                            Vencimento = new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VlrCorrigido = 0m,
+                            VlrJuros = 0m,
+                            VlrMulta = 0m,
+                            VlrOriginal = 100m
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            NumParcela = 2,
+                            TituloId = 1L,
+                            Vencimento = new DateTime(2020, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VlrCorrigido = 0m,
+                            VlrJuros = 0m,
+                            VlrMulta = 0m,
+                            VlrOriginal = 100m
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            NumParcela = 3,
+                            TituloId = 1L,
+                            Vencimento = new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VlrCorrigido = 0m,
+                            VlrJuros = 0m,
+                            VlrMulta = 0m,
+                            VlrOriginal = 100m
+                        });
                 });
 
             modelBuilder.Entity("DesafioFULL.Dominio.Entidades.TituloVerificacao", b =>
@@ -166,6 +226,16 @@ namespace DesafioFULL.Repositorio.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Email = "admin@admin.com",
+                            Nome = "Administrador",
+                            Senha = "admin",
+                            SobreNome = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("DesafioFULL.Dominio.Entidades.Titulo", b =>

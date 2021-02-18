@@ -45,10 +45,10 @@ namespace DesafioFULL.Web
             services.AddScoped<IRepositorioCliente, RepositorioCliente>();
             services.AddScoped<IAppServicoCliente, AppServicoCliente>();
 
-            //services.AddScoped<IRepositorioTitulo, RepositorioTitulo>();
-            //services.AddScoped<IRepositorioTituloParcela, RepositorioTituloParcela>();
-            //services.AddScoped<IRepositorioTituloVerificacao, RepositorioTituloVerificacao>();
-            //services.AddScoped<IAppServicoTitulo, AppServicoTitulo>();
+            services.AddScoped<IRepositorioTitulo, RepositorioTitulo>();
+            services.AddScoped<IRepositorioTituloParcela, RepositorioTituloParcela>();
+            services.AddScoped<IRepositorioTituloVerificacao, RepositorioTituloVerificacao>();
+            services.AddScoped<IAppServicoTitulo, AppServicoTitulo>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

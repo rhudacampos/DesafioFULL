@@ -11,7 +11,7 @@ namespace DesafioFULL.Repositorio.Repositorios
     {
         protected readonly DesafioFULLContexto _desafioFULLContexto;
         protected readonly DbSet<TEntity> _dbSet;
-        
+
         public RepositorioBase(DesafioFULLContexto desafioFULLContexto)
         {
             _desafioFULLContexto = desafioFULLContexto;
@@ -28,7 +28,7 @@ namespace DesafioFULL.Repositorio.Repositorios
             _desafioFULLContexto.Set<TEntity>().Update(entity);
             _desafioFULLContexto.SaveChanges();
         }
-        
+
 
         public TEntity ObterPorId(long id)
         {
@@ -74,6 +74,11 @@ namespace DesafioFULL.Repositorio.Repositorios
             _desafioFULLContexto.Dispose();
         }
 
-        
+        public int SaveChanges()
+        {
+           var retorno = _desafioFULLContexto.SaveChanges();
+           return retorno;
+
+        }
     }
 }

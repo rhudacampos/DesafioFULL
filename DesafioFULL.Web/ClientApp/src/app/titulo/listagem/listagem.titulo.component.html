@@ -22,20 +22,20 @@
           <th>Cliente Devedor</th>
           <th>Valor Original</th>
           <th>Dias em Atraso</th>
-          <th>Valor Corrigido</th>
           <th>Multa</th>
           <th>Juros</th>
+          <th>Valor Corrigido</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let t of titulos">
           <th>{{t.id}}</th>
           <th>{{t.nomeCliente}}</th>
-          <th>{{t.vlrOriginal}}</th>
-          <th>{{t.diasEmAtraso}}</th>
-          <th>{{t.vlrCorrigido}}</th>
-          <th>{{t.vlrMulta}}</th>
-          <th>{{t.vlrJuros}}</th>
+          <th class="valor">{{t.vlrOriginal | number:'1.2-2'}}</th>
+          <th class="central">{{t.diasEmAtraso}}</th>
+          <th class="valor">{{t.vlrMulta | number:'1.2-2' }}</th>
+          <th class="valor">{{t.vlrJuros | number:'1.2-2'}}</th>
+          <th class="valor">{{t.vlrCorrigido | number:'1.2-2'}}</th>
           <th><button class="btn btn-success btn-sm" (click)="editarTitulo(t)">Editar</button></th>
           <th><button class="btn btn-danger btn-sm" (click)="excluirTitulo(t)">Excluir</button></th>
         </tr>

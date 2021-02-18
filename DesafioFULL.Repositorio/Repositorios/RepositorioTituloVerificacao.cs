@@ -15,7 +15,7 @@ namespace DesafioFULL.Repositorio.Repositorios
         public TituloVerificacao ObterVerificacaoAtual()
         {
             return _desafioFULLContexto.TituloVerificacoes.FirstOrDefault(
-                    t => t.DataVerificacao == DateTime.Today);
+                    t => t.DataVerificacao.Date == DateTime.Today.Date);
         }
     }
 }

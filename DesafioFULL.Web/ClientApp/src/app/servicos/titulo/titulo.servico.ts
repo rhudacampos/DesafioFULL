@@ -23,17 +23,20 @@ export class TituloServico implements OnInit {
     return new HttpHeaders().set('content-type', 'application/json');
   }
 
-  //public cadastrarTitulo(titulo: Titulo): Observable<Titulo> {
-  //  return this.http.post<Titulo>(this.baseURL + "titulo", JSON.stringify(titulo), { headers: this.headers });
-  //}
+  public cadastrarTitulo(titulo: Titulo): Observable<Titulo> {
+    //return this.http.post<Titulo>(this.baseURL + "titulo", JSON.stringify(titulo), { headers: this.headers });
+    return null
+  }
 
-  //public atualizarTitulo(titulo: Titulo): Observable<Titulo> {
-  //  return this.http.post<Titulo>(this.baseURL + "titulo", JSON.stringify(titulo), { headers: this.headers });
-  //}
+  public atualizarTitulo(titulo: Titulo): Observable<Titulo> {
+    //return this.http.post<Titulo>(this.baseURL + "titulo", JSON.stringify(titulo), { headers: this.headers });
+    return null
+  }
 
-  //public excluirTitulo(titulo: Titulo): Observable<Titulo[]> {
-  //  return this.http.post<Titulo[]>(this.baseURL + "titulo/excluir", JSON.stringify(titulo), { headers: this.headers });
-  //}
+  public excluirTitulo(titulo: Titulo): Observable<Titulo[]> {
+    //return this.http.post<Titulo[]>(this.baseURL + "titulo/excluir", JSON.stringify(titulo), { headers: this.headers });
+    return null
+  }
 
   public obterTodosTitulos(): Observable<Titulo[]> {
     return this.http.get<Titulo[]>(this.baseURL + "titulo");

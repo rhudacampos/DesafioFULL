@@ -14,6 +14,7 @@ namespace DesafioFULL.Dominio.Interfaces.Repositorios
         void AdicionarEmLote(IList<TEntity> entidades);
         void AtualizarEmLote(IList<TEntity> entidades);
         void RemoverEmLote(IList<TEntity> entidades);
+        int SaveChanges();
 
         TransactionScope TransactionScope();
 

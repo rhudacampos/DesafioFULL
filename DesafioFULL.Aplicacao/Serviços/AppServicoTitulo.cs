@@ -1,7 +1,7 @@
 ﻿using DesafioFULL.Aplicacao.Interfaces;
-using DesafioFULL.Aplicacao.ViewModels;
 using DesafioFULL.Dominio.Entidades;
 using DesafioFULL.Dominio.Interfaces.Repositorios;
+using DesafioFULL.Dominio.ViewModels;
 using DesafioFULL.Repositorio.Contexto;
 using System;
 using System.Collections.Generic;
@@ -85,24 +85,11 @@ namespace DesafioFULL.Aplicacao.Serviços
                     ProcessarCalculoTitulos();
                 };
 
-                var listaTitulos = _repositorioTitulo.ObterTodos();
-                var retornoLista = listaTitulos
-                    .Select(t => new ViewModelTitulo
-                    {
-                        id = t.Id,
-                        clienteId = t.ClienteId,
-                        qtdeParcelas = t.QtdeParcelas,
-                        perJuros = t.PerJuros,
-                        perMulta = t.PerMulta,
-                        vlrOriginal = t.VlrOriginal,
-                        vlrCorrigido = t.VlrCorrigido,
-                        nomeCliente = t.Cliente.Nome,
-                        vlrJuros = t.VlrJuros,
-                        vlrMulta = t.VlrMulta,
-                        diasEmAtraso = t.DiasEmAtraso
-                    });
+                var retornoListaTitulos = _repositorioTitulo.ObterTodosTitulos();
 
-                return retornoLista;
+
+
+                return retornoListaTitulos;
             }
             catch (System.Exception)
             {
@@ -136,19 +123,16 @@ namespace DesafioFULL.Aplicacao.Serviços
                     foreach (var titulo in listaTitulos)
                     {
                         var tituloCalculado = CalcularTitulo(titulo);
-                        titulo.VlrMulta = tituloCalculado.VlrMulta;
-                        titulo.VlrJuros = tituloCalculado.VlrJuros;
-                        titulo.VlrCorrigido = tituloCalculado.VlrCorrigido;
-                        titulo.QtdeParcelas = tituloCalculado.QtdeParcelas;
                     }
-                    _repositorioTitulo.AtualizarEmLote(listaTitulos);
+                    //if (listaTitulos.Count > 0)
+                    //    _repositorioTitulo.AtualizarEmLote(listaTitulos);
 
                     _repositorioTituloVerificacao.Adicionar(
                         new TituloVerificacao
                         {
                             DataVerificacao = DateTime.Now
                         });
-
+                    _repositorioTituloVerificacao.SaveChanges();
                     unidadeTrabalho.Complete();
                 }
             }
@@ -161,23 +145,27 @@ namespace DesafioFULL.Aplicacao.Serviços
 
         public Titulo CalcularTitulo(Titulo titulo)
         {
-            titulo.VlrMulta = titulo.VlrOriginal * (titulo.PerMulta / 100);
-            titulo.VlrCorrigido = 0;
 
+            titulo.VlrCorrigido = 0;
+            titulo.VlrJuros = 0;
+            titulo.VlrMulta = 0;
+            titulo.DiasEmAtraso = 0;
             var listaTituloParcela = _repositorioTituloParcela.ObterPorTitulo(titulo);
             foreach (var tituloParcela in listaTituloParcela)
             {
                 var tituloParcelaCalculado = CalcularTituloParcela(ref titulo, tituloParcela);
-                tituloParcela.VlrJuros = tituloParcelaCalculado.VlrJuros;
-                tituloParcela.VlrMulta = tituloParcelaCalculado.VlrMulta;
-                tituloParcela.VlrCorrigido = tituloParcelaCalculado.VlrCorrigido;
+                
 
                 titulo.VlrCorrigido += tituloParcelaCalculado.VlrCorrigido;
+                titulo.VlrJuros += tituloParcelaCalculado.VlrJuros;
             }
+
+            if (titulo.DiasEmAtraso > 0)
+              titulo.VlrMulta = titulo.VlrOriginal * (titulo.PerMulta / 100);
 
             titulo.QtdeParcelas = listaTituloParcela.Count;
 
-            _repositorioTituloParcela.AtualizarEmLote(listaTituloParcela);
+            //_repositorioTituloParcela.AtualizarEmLote(listaTituloParcela);
             return titulo;
         }
 

@@ -18,7 +18,7 @@ import { ListagemClienteComponent } from './cliente/listagem/listagem.cliente.co
 import { CadastroUsuarioComponent } from './usuario/cadastro/cadastro.usuario.component';
 import { ClienteServico } from './servicos/cliente/cliente.servico';
 import { CadastroClienteComponent } from './cliente/cadastro/cadastro.cliente.component';
-//import { ListagemTituloComponent } from './titulo/listagem/listagem.titulo.component';
+import { ListagemTituloComponent } from './titulo/listagem/listagem.titulo.component';
 import { TituloServico } from './servicos/titulo/titulo.servico';
 
  
@@ -33,7 +33,7 @@ import { TituloServico } from './servicos/titulo/titulo.servico';
     CadastroUsuarioComponent,
     ListagemClienteComponent,
     CadastroClienteComponent,
-    //ListagemTituloComponent
+    ListagemTituloComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,11 +45,11 @@ import { TituloServico } from './servicos/titulo/titulo.servico';
       { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
       { path: 'cliente', component: ListagemClienteComponent/*, canActivate: [GuardaRotas] */},
       { path: 'cadastro-cliente', component: CadastroClienteComponent/*, canActivate: [GuardaRotas]*/ },
-      //{ path: 'titulo', component: ListagemTituloComponent/*, canActivate: [GuardaRotas] */ },
+      { path: 'titulo', component: ListagemTituloComponent/*, canActivate: [GuardaRotas] */ },
       //{ path: 'cadastro-titulo', component: CadastroTituloComponent/*, canActivate: [GuardaRotas]*/ },
     ])
   ],
-  providers: [UsuarioServico, ClienteServico, /*TituloServico*/],
+  providers: [UsuarioServico, ClienteServico, TituloServico],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

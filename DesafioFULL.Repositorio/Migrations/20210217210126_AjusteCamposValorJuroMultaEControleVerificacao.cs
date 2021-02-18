@@ -4,15 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DesafioFULL.Repositorio.Migrations
 {
-    public partial class AdicionadoCamposValorJuroMultaEControleVerificacao : Migration
+    public partial class AjusteCamposValorJuroMultaEControleVerificacao : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DeleteData(
-                table: "Usuarios",
-                keyColumn: "Id",
-                keyValue: 1L);
-
             migrationBuilder.AddColumn<decimal>(
                 name: "VlrJuros",
                 table: "Titulos",
@@ -75,11 +70,6 @@ namespace DesafioFULL.Repositorio.Migrations
             migrationBuilder.DropColumn(
                 name: "VlrMulta",
                 table: "TituloParcelas");
-
-            migrationBuilder.InsertData(
-                table: "Usuarios",
-                columns: new[] { "Id", "Email", "Nome", "Senha", "SobreNome" },
-                values: new object[] { 1L, "admin@admin.com", "Administrador", "admin", "Admin" });
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using DesafioFULL.Aplicacao.ViewModels;
-using DesafioFULL.Dominio.Entidades;
+﻿using DesafioFULL.Dominio.Entidades;
+using DesafioFULL.Dominio.ViewModels;
 using System.Collections.Generic;
 
 namespace DesafioFULL.Aplicacao.Interfaces
