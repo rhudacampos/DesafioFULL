@@ -21,6 +21,7 @@ namespace DesafioFULL.Repositorio.Repositorios
                             id = titulos.Id,
                             clienteId = titulos.ClienteId,
                             nomeCliente = titulos.Cliente.Nome + " " + titulos.Cliente.SobreNome,
+                            cpfCliente = titulos.Cliente.CPF,
                             diasEmAtraso = titulos.DiasEmAtraso,
                             perJuros = titulos.DiasEmAtraso,
                             perMulta = titulos.PerMulta,

@@ -4,7 +4,7 @@ import { Titulo } from "../../modelo/titulo";
 import { TituloServico } from "../../servicos/titulo/titulo.servico";
 
 @Component({
-  selector: "titulo",
+  selector: "titulos",
   templateUrl: "./listagem.titulo.component.html",
   styleUrls: ["./listagem.titulo.component.css"]
 })
@@ -30,7 +30,7 @@ export class ListagemTituloComponent implements OnInit {
 
   public adicionarTitulo() {
     sessionStorage.setItem("tituloSessao", "");
-    this.router.navigate(['/cadastro-titulo']);
+    this.router.navigate(['/manutencao-titulo']);
   }
 
   public excluirCliente(titulo: Titulo) {
@@ -50,7 +50,7 @@ export class ListagemTituloComponent implements OnInit {
 
   public editarTitulo(titulo: Titulo) {
     sessionStorage.setItem('tituloSessao', JSON.stringify(titulo));
-    this.router.navigate(['/cadastro-titulo']);
+    this.router.navigate(['/manutencao-titulo']);
   }
 
 

@@ -11,6 +11,7 @@
         public decimal vlrCorrigido { get; set; }
         public int diasEmAtraso { get; set; }
         public string nomeCliente { get; set; }
+        public string cpfCliente { get; set; }
         public decimal vlrJuros { get; set; }
         public decimal vlrMulta { get; set; }
     }

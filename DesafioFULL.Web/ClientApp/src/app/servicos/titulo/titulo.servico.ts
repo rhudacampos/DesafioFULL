@@ -24,8 +24,7 @@ export class TituloServico implements OnInit {
   }
 
   public cadastrarTitulo(titulo: Titulo): Observable<Titulo> {
-    //return this.http.post<Titulo>(this.baseURL + "titulo", JSON.stringify(titulo), { headers: this.headers });
-    return null
+    return this.http.post<Titulo>(this.baseURL + "titulo", JSON.stringify(titulo), { headers: this.headers });
   }
 
   public atualizarTitulo(titulo: Titulo): Observable<Titulo> {

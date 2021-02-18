@@ -35,7 +35,12 @@ namespace DesafioFULL.Aplicacao.Serviços
                     throw new System.ArgumentException(titulo.ObterMensagensValidacao());
                 }
 
-                _repositorioTitulo.Adicionar(titulo);
+                //using (var unidadeTrabalho = _repositorioTitulo.TransactionScope())
+                //{
+
+                    _repositorioTitulo.Adicionar(titulo);
+                //    unidadeTrabalho.Complete();
+                //}
             }
             catch (System.Exception)
             {
@@ -54,7 +59,13 @@ namespace DesafioFULL.Aplicacao.Serviços
                     throw new System.ArgumentException(titulo.ObterMensagensValidacao());
                 }
 
-                _repositorioTitulo.Atualizar(titulo);
+                using (var unidadeTrabalho = _repositorioTitulo.TransactionScope())
+                {
+                    CalcularTitulo(titulo);
+                    _repositorioTitulo.Atualizar(titulo);
+                    unidadeTrabalho.Complete();
+                }
+                
             }
             catch (System.Exception)
             {
@@ -188,6 +199,7 @@ namespace DesafioFULL.Aplicacao.Serviços
             }
 
             tituloParcela.VlrJuros = (titulo.PerJuros / 100) / 30 * diasEmAtraso * tituloParcela.VlrOriginal;
+            tituloParcela.DiasEmAtraso = (int)diasEmAtraso;
             tituloParcela.VlrCorrigido = tituloParcela.VlrOriginal + tituloParcela.VlrMulta + tituloParcela.VlrJuros;
 
             return tituloParcela;

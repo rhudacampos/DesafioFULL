@@ -30,12 +30,20 @@ namespace DesafioFULL.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Titulo Titulo)
+        public IActionResult Post([FromBody]Titulo titulo)
         {
             try
             {
-                _appServicoTitulo.Adicionar(Titulo);
-                return Created("titulo", Titulo);
+                if (titulo.Id > 0)
+                {
+                    _appServicoTitulo.ValidarEAtualizar(titulo);
+                }
+                else
+                {
+                    _appServicoTitulo.ValidarECadastrar(titulo);
+                }
+
+                return Created("Cliente", titulo);
             }
             catch (Exception e)
             {

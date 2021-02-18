@@ -1,0 +1,152 @@
+<!--<div class="text-center">-->
+<form class="form-group mb-4">
+  <div class="card col-md-12">
+    <div class="card-body">
+
+      <h1 class="h4 mb-4 cadastro">Manutenção do Titulo</h1>
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label *ngIf="titulo.id">Numero: {{titulo.id}}</label>
+        </div>
+        <div class="form-group col-md-9">
+        </div>
+
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputNomeCliente">Cliente</label>
+          <select type="text" id="inputNomeCliente"
+                  name="clienteId" placeholder=""
+                  class="form-control mb-2"
+                  #clienteId="ngModel"
+                  [(ngModel)]="titulo.clienteId"
+                  (ngModelChange)="onChangeCliente($event)">
+
+            <option *ngFor="let c of clientes | async" [ngValue]="c.id">{{c.nome}}</option>
+            <!--{{cliente | json}}-->
+
+          </select>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputCpf">CPF</label>
+          <input type="text" id="inputCpf"
+                 disabled
+                 name="cpf" placeholder=""
+                 class="form-control mb-2 col"
+                 #nomeCliente="ngModel"
+                 (ngModelChange)="titulo.cpfCliente=$event"
+                 [ngModel]="titulo.cpfCliente |  CPF" />
+        </div>
+
+        <!--<div class="form-group col-md-4">
+          <label for="inputCpfCliente">CPF</label>
+          <select type="text" id="inputCpfCliente"
+                  name="cpfCliente" placeholder=""
+                  class="form-control mb-2"
+                  #clienteId="ngModel"
+                  [(ngModel)]="titulo.cpfCliente"
+                  (ngModelChange)="onChangeCliente($event)">
+
+            <option *ngFor="let c of clientes | async" [ngValue]="c.cpf">{{c.cpf}}</option>
+
+          </select>
+        </div>-->
+        <!--<div class="form-group col-md-4">
+          <label for="inputCpfCliente">CPF</label>
+          <input type="text" id="inputCpfCliente"
+                 name="cpfCliente" placeholder=""
+                 class="form-control mb-2"
+                 #clienteId="ngModel"
+                 [(ngModel)]="titulo.cpfCliente" />
+        </div>-->
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-6">
+
+          <label for="inputVlrOriginal">Valor</label>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="addon-preco">R$</span>
+            <input type="number" id="inputVlrOriginal"
+                   aria-describedby="basic-addon1"
+                   name="vlrOriginal" placeholder="000,00"
+                   class="form-control"
+                   maxlength="11"
+                   #vlrOriginal="ngModel"
+                   [ngClass]="{
+            'is-invalid':vlrOriginal.invalid && (vlrOriginal.dirty || vlrOriginal.touched),
+            'is-valid':vlrOriginal.valid && (vlrOriginal.dirty || vlrOriginal.touched)
+           }"
+                   [(ngModel)]="titulo.vlrOriginal"
+                   required />
+            <!--(ngModelChange)="titulo.vlrOriginal=$event"
+            [ngModel]="titulo.vlrOriginal | number:'1.4-2'"
+            required />-->
+          </div>
+          <div class="invalid-feedback mb-2" *ngIf="vlrOriginal.invalid && (vlrOriginal.dirty || vlrOriginal.touched)">
+            <div *ngIf="vlrOriginal.errors.required">Valor deve ser informado </div>
+          </div>
+
+
+
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputFone">Juros (ao mês)</label>
+
+          <div class="input-group mb-2">
+            <input type="number" id="inputJuros"
+                   name="juros" placeholder=""
+                   class="form-control"
+                   #sobreNome="ngModel"
+                   [(ngModel)]="titulo.perJuros" />
+            <span class="input-group-text" id="addon-perJuros">%</span>
+          </div>
+
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputFone">Multa</label>
+          <div class="input-group mb-2">
+            <input type="number" id="inputMulta"
+                   name="multa" placeholder=""
+                   class="form-control"
+                   #sobreNome="ngModel"
+                   [(ngModel)]="titulo.perMulta" />
+            <span class="input-group-text" id="addon-perMulta">%</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-row form-inline">
+        <div class="form-group col-md-6">
+          <button class="btn btn-primary btn-block" type="submit" (click)="cadastrar()" [disabled]="ativarSpinner">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativarSpinner"></span>
+            {{salvarAtualizar}}
+          </button>
+        </div>
+
+        <div class="form-group col-md-6">
+          <button class="btn btn-secondary btn-block" type="submit" [routerLink]="['/titulos']">
+            Cancelar
+          </button>
+        </div>
+      </div>
+
+      <div class="alert alert-danger" *ngIf="alerta">
+        {{mensagem}}
+      </div>
+
+      <div class="alert alert-success" *ngIf="tituloCadastrado">
+        {{mensagem}}
+      </div>
+
+    </div>
+  </div>
+
+</form>
+<!--</div>-->

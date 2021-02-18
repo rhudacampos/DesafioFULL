@@ -28,8 +28,10 @@ namespace DesafioFULL.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             //.AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             var connectionString = Configuration.GetConnectionString("MySqlConnection");
@@ -41,7 +43,7 @@ namespace DesafioFULL.Web
 
             services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
             services.AddScoped<IAppServicoUsuario, AppServicoUsuario>();
-          
+
             services.AddScoped<IRepositorioCliente, RepositorioCliente>();
             services.AddScoped<IAppServicoCliente, AppServicoCliente>();
 
@@ -96,8 +98,8 @@ namespace DesafioFULL.Web
 
                 if (env.IsDevelopment())
                 {
-                    //spa.UseAngularCliServer(npmScript: "start");
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
+                    spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 }
             });
         }

@@ -7,7 +7,8 @@ export class Titulo {
   vlrOriginal: number;
   vlrCorrigido: number;
   diasEmAtraso: number;
-  nomeCliente: number;
+  nomeCliente: string;
+  cpfCliente: string;
   vlrMulta: number;
   vlrJuros: number;
 }

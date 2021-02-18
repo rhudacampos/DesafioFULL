@@ -43,7 +43,7 @@ export class CadastroClienteComponent {
           this.mensagem = "Cliente cadastrado com sucesso";
           this.ativarSpinner = false;
           this.alerta = false;
-          this.router.navigate(['/cliente']);
+          this.router.navigate(['/clientes']);
         },
         e => {
           this.alerta = true;

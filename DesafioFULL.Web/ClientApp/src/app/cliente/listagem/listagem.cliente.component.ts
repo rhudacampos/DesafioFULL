@@ -4,7 +4,7 @@ import { Cliente } from "../../modelo/cliente";
 import { ClienteServico } from "../../servicos/cliente/cliente.servico";
 
 @Component({
-  selector: "cliente",
+  selector: "clientes",
   templateUrl: "./listagem.cliente.component.html",
   styleUrls: ["./listagem.cliente.component.css"]
 })

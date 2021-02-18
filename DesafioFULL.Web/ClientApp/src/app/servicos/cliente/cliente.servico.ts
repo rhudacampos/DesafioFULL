@@ -39,7 +39,13 @@ export class ClienteServico implements OnInit {
     return this.http.get<Cliente[]>(this.baseURL + "cliente");
   }
 
-  public obterCliente(): Observable<Cliente> {
-    return this.http.get<Cliente>(this.baseURL + "cliente/obter");
+  public obterClienteId(clienteId: number): Observable<Cliente> {
+    var cliente = new Cliente();
+    cliente.id = clienteId;
+    return this.http.post<Cliente>(this.baseURL + "cliente/obter", JSON.stringify(cliente), { headers: this.headers });
+  }
+
+  public obterCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http.post<Cliente>(this.baseURL + "cliente/obter", JSON.stringify(cliente), { headers: this.headers });
   }
 }

@@ -29,12 +29,13 @@ namespace DesafioFULL.Web.Controllers
             }
         }
 
-        [HttpGet("obter")]
+        [HttpPost("obter")]
         public IActionResult Obter([FromBody] Cliente cliente)
         {
             try
             {
-                return Ok(_appServicoCliente.ObterPorId(cliente.Id));
+                var clienteRetorno =_appServicoCliente.ObterPorId(cliente.Id);
+                return Created("Cliente", clienteRetorno);
             }
             catch (Exception e)
             {
