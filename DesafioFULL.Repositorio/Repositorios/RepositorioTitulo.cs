@@ -16,6 +16,7 @@ namespace DesafioFULL.Repositorio.Repositorios
         public IEnumerable<ViewModelTitulo> ObterTodosTitulos()
         {
             var query = (from titulos in _desafioFULLContexto.Titulos.AsQueryable().Distinct()
+                         orderby titulos.Id
                          select new ViewModelTitulo
                          {
                              id = titulos.Id,
