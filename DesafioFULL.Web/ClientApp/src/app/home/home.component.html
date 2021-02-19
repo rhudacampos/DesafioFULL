@@ -1,22 +1,35 @@
-<h1>DesafioFULL</h1>
-<p>Bem vindo ao projeto de teste técnico</p>
-<p>Neste projeto foram usadas as tecnologias:</p>
-<ul>
-  <li><a href='https://get.asp.net/'>ASP.NET Core</a> e <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a></li>
-  <li><a href='https://angular.io/'>Angular</a> e <a href='http://www.typescriptlang.org/'>TypeScript</a></li>
-  <li><a href='http://getbootstrap.com/'>Bootstrap</a></li>
-  <li><a href='https://dev.mysql.com/downloads/mysql/'>MySQL Community Server</a></li>
-</ul>
-<p>Desenvolvido por:</p>
-<ul>
-  <li><strong>Rhuda Oliveira Campos</strong></li>
-</ul>
-<p>Banco de dados (Utilizado metodologia Code First):</p>
-<ul>
-  <li>Controle de migrations no<strong> Projeto DesafioFULL.Repositorio</strong> (update-database) para adicionar o banco</li>
-</ul>
-<!--<p>Para o primeiro acesso usar o login:</p>
-<ul>
-  <li><strong>Email:</strong> admin@admin.com</li>
-  <li><strong>Senha:</strong> admin</li>
-</ul>-->
+<!--<h1>DesafioFULL</h1>-->
+<a class="navbar-brand img-logo" id="logoProjeto" [routerLink]="['/']"><img src="..\..\assets\img\desafioFullLogo.png" /></a>
+<!--<img src="..\..\assets\img\desafioFullLogo.png" title="DesafioFULL"/>-->
+<div id="textoHome">
+  <p>Bem vindo ao projeto de teste técnico</p>
+  <p>Neste projeto foram usadas as tecnologias:</p>
+  <ul>
+    <li><a href='https://get.asp.net/'>ASP.NET Core</a> e <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a></li>
+    <li><a href='https://angular.io/'>Angular</a> e <a href='http://www.typescriptlang.org/'>TypeScript</a></li>
+    <li><a href='http://getbootstrap.com/'>Bootstrap</a></li>
+    <li><a href='https://dev.mysql.com/downloads/mysql/'>MySQL Community Server</a></li>
+  </ul>
+  <p>Desenvolvido por:</p>
+  <ul>
+    <li><strong>Rhuda Oliveira Campos</strong></li>
+  </ul>
+  <p>Banco de dados (Utilizado metodologia Code First):</p>
+  <ul>
+    <li>Controle de migrations no<strong> Projeto DesafioFULL.Repositorio</strong> (update-database) para adicionar o banco</li>
+  </ul>
+  <!--<p>Para o primeiro acesso usar o login:</p>
+  <ul>
+    <li><strong>Email:</strong> admin@admin.com</li>
+    <li><strong>Senha:</strong> admin</li>
+  </ul>-->
+
+  <div class="mb-2">
+    <a class="navbar-brand img-logo"
+       id="logoPaschoalotto"
+       [title]="TituloPaschoalotto"
+       (click)="linkPaschoalotto()">
+      <img id="imglogoPaschoalotto" [src]="enderecoLogoPaschoalotto" />
+    </a>
+  </div>
+</div>
