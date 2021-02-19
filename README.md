@@ -16,3 +16,6 @@ App desenvolvido com:
     "MySqlConnection": "Persist Security Info=False;server=localhost;database=DesafioFull;uid=root;password=root;AllowUserVariables=True;port=3306"
   }
 ````
+## Instruções de execução
+1. Abra o arquivo de solução (DesafioFULL.sln), compile e Execute(F5).
+
