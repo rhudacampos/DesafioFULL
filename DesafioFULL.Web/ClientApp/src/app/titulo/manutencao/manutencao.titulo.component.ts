@@ -37,6 +37,7 @@ export class ManutencaoTituloComponent {
   public parcelaCadastrada: boolean;
 
   public salvarAtualizar: string;
+  public vencimentoFormatado: Date;
   
   constructor(private tituloServico: TituloServico,
     private clienteServico: ClienteServico, private router: Router, private datepipe: DatePipe) {
@@ -194,7 +195,10 @@ export class ManutencaoTituloComponent {
   public adicionarTituloParcela() {
     this.ativarSpinnerParcela = true;
     this.tituloParcela.tituloId = this.titulo.id;
-    
+
+    if (this.vencimentoFormatado) {
+      this.tituloParcela.vencimento = this.vencimentoFormatado;
+    }
     this.tituloServico.cadastrarTituloParcela(this.tituloParcela)
       .subscribe(
         retorno_json => {
@@ -239,6 +243,10 @@ export class ManutencaoTituloComponent {
           this.ativarSpinnerParcela = false;
         }
       );
+  }
+
+  atualizaFormatoVencimento(value: string) {
+    this.vencimentoFormatado= new Date(value);
   }
 }
 
