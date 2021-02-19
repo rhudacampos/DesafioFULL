@@ -1,3 +1,4 @@
+import { DatePipe } from "@angular/common";
 import { Component } from "@angular/core"
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
@@ -38,7 +39,7 @@ export class ManutencaoTituloComponent {
   public salvarAtualizar: string;
   
   constructor(private tituloServico: TituloServico,
-    private clienteServico: ClienteServico, private router: Router) {
+    private clienteServico: ClienteServico, private router: Router, private datepipe: DatePipe) {
 
   }
 
@@ -147,8 +148,10 @@ export class ManutencaoTituloComponent {
   }
 
   public editarParcela(tituloParcela: TituloParcela) {
+
     this.tituloParcela = tituloParcela;
   }
+  
 
   public excluirParcela(tituloParcela: TituloParcela) {
     this.ativarSpinnerParcela = true;
@@ -191,7 +194,7 @@ export class ManutencaoTituloComponent {
   public adicionarTituloParcela() {
     this.ativarSpinnerParcela = true;
     this.tituloParcela.tituloId = this.titulo.id;
-
+    
     this.tituloServico.cadastrarTituloParcela(this.tituloParcela)
       .subscribe(
         retorno_json => {

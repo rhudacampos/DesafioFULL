@@ -256,7 +256,7 @@ namespace DesafioFULL.Aplicacao.Serviços
                 {
                     _repositorioTituloParcela.Atualizar(tituloParcela);
 
-                    var titulo = _repositorioTitulo.ObterPorId(tituloParcela.Id);
+                    var titulo = _repositorioTitulo.ObterPorId(tituloParcela.TituloId);
                     var retornoTitulo = CalcularTitulo(titulo);
                     _repositorioTitulo.Atualizar(retornoTitulo);
 
