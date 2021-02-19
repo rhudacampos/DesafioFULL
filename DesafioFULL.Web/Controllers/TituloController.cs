@@ -53,12 +53,12 @@ namespace DesafioFULL.Web.Controllers
         }
 
         [HttpPost("obterTitulo")]
-        public IActionResult OnterTitulo([FromBody] Titulo titulo)
+        public IActionResult OberTitulo([FromBody] Titulo titulo)
         {
             try
             {
-                var tituloParcelas = _appServicoTitulo.ObterPorId(titulo.Id);
-                return Created("Titulo", titulo);
+                var tituloRetorno = _appServicoTitulo.ObterTituloPorId(titulo.Id);
+                return Created("Titulo", tituloRetorno);
             }
             catch (Exception e)
             {

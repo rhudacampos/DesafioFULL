@@ -160,7 +160,7 @@ namespace DesafioFULL.Aplicacao.Serviços
             titulo.VlrJuros = 0;
             titulo.VlrMulta = 0;
             titulo.DiasEmAtraso = 0;
-            
+
             var listaTituloParcela = _repositorioTituloParcela.ObterPorTitulo(titulo);
             foreach (var tituloParcela in listaTituloParcela)
             {
@@ -298,6 +298,9 @@ namespace DesafioFULL.Aplicacao.Serviços
             }
         }
 
-
+        public ViewModelTitulo ObterTituloPorId(long tituloId)
+        {
+            return _repositorioTitulo.ObterPorTituloId(tituloId);
+        }
     }
 }

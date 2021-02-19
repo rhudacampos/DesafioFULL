@@ -7,6 +7,7 @@ namespace DesafioFULL.Dominio.Interfaces.Repositorios
     public interface IRepositorioTitulo: IRepositorioBase<Titulo>
     {
         IEnumerable<ViewModelTitulo> ObterTodosTitulos();
-        
+        ViewModelTitulo ObterPorTituloId(long tituloId);
+
     }
 }

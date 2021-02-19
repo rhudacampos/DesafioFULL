@@ -7,6 +7,7 @@ namespace DesafioFULL.Aplicacao.Interfaces
     public interface IAppServicoTitulo : IAppServicoBase<Titulo>
     {
         IEnumerable<ViewModelTitulo> ObterListagemTitulos();
+        ViewModelTitulo ObterTituloPorId(long tituloId);
         void ValidarECadastrar(Titulo titulo);
         void ValidarEAtualizar(Titulo titulo);
         IEnumerable<ViewModelTitulo> ExcluirERetornarLista(Titulo titulo);
