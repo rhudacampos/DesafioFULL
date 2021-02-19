@@ -6,16 +6,21 @@
       <h1 class="h4 mb-4 cadastro">Manutenção do Titulo</h1>
 
       <div class="form-row">
-        <div class="form-group col-md-3">
-          <label *ngIf="titulo.id">Numero: {{titulo.id}}</label>
-        </div>
-        <div class="form-group col-md-9">
+        <div class="form-group mb-4 col-md-2" *ngIf="titulo.id">
+          <label for="inputId">Id</label>
+          <input type="number" id="inputId"
+                 disabled
+                 aria-describedby="basic-addon1"
+                 name="id" placeholder=""
+                 class="form-control"
+                 #nid="ngModel"
+                 [(ngModel)]="titulo.id" />
+          <!--<div class="invalid-feedback mb-2" *ngIf="numParcela.invalid && (numParcela.dirty || numParcela.touched)">
+      <div *ngIf="numParcela.errors.required">Numero da parcela deve ser informado </div>
+    </div>-->
         </div>
 
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-5">
           <label for="inputNomeCliente">Cliente</label>
           <select type="text" id="inputNomeCliente"
                   name="clienteId" placeholder=""
@@ -24,13 +29,13 @@
                   [(ngModel)]="titulo.clienteId"
                   (ngModelChange)="onChangeCliente($event)">
 
-            <option *ngFor="let c of clientes | async" [ngValue]="c.id">{{c.nome}}</option>
+            <option *ngFor="let c of clientes | async" [ngValue]="c.id">{{c.nome}} {{c.sobreNome}}</option>
             <!--{{cliente | json}}-->
 
           </select>
         </div>
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-5">
           <label for="inputCpf">CPF</label>
           <input type="text" id="inputCpf"
                  disabled
@@ -40,28 +45,6 @@
                  (ngModelChange)="titulo.cpfCliente=$event"
                  [ngModel]="titulo.cpfCliente |  CPF" />
         </div>
-
-        <!--<div class="form-group col-md-4">
-          <label for="inputCpfCliente">CPF</label>
-          <select type="text" id="inputCpfCliente"
-                  name="cpfCliente" placeholder=""
-                  class="form-control mb-2"
-                  #clienteId="ngModel"
-                  [(ngModel)]="titulo.cpfCliente"
-                  (ngModelChange)="onChangeCliente($event)">
-
-            <option *ngFor="let c of clientes | async" [ngValue]="c.cpf">{{c.cpf}}</option>
-
-          </select>
-        </div>-->
-        <!--<div class="form-group col-md-4">
-          <label for="inputCpfCliente">CPF</label>
-          <input type="text" id="inputCpfCliente"
-                 name="cpfCliente" placeholder=""
-                 class="form-control mb-2"
-                 #clienteId="ngModel"
-                 [(ngModel)]="titulo.cpfCliente" />
-        </div>-->
 
       </div>
 
@@ -76,7 +59,6 @@
                    aria-describedby="basic-addon1"
                    name="vlrOriginal" placeholder="000,00"
                    class="form-control"
-                   maxlength="11"
                    #vlrOriginal="ngModel"
                    [ngClass]="{
             'is-invalid':vlrOriginal.invalid && (vlrOriginal.dirty || vlrOriginal.touched),
@@ -91,13 +73,10 @@
           <div class="invalid-feedback mb-2" *ngIf="vlrOriginal.invalid && (vlrOriginal.dirty || vlrOriginal.touched)">
             <div *ngIf="vlrOriginal.errors.required">Valor deve ser informado </div>
           </div>
-
-
-
         </div>
-        <div class="form-group col-md-3">
-          <label for="inputFone">Juros (ao mês)</label>
 
+        <div class="form-group col-md-3">
+          <label for="inputJuros">Juros (ao mês)</label>
           <div class="input-group mb-2">
             <input type="number" id="inputJuros"
                    name="juros" placeholder=""
@@ -109,7 +88,7 @@
 
         </div>
         <div class="form-group col-md-3">
-          <label for="inputFone">Multa</label>
+          <label for="inputMulta">Multa</label>
           <div class="input-group mb-2">
             <input type="number" id="inputMulta"
                    name="multa" placeholder=""
@@ -117,6 +96,52 @@
                    #sobreNome="ngModel"
                    [(ngModel)]="titulo.perMulta" />
             <span class="input-group-text" id="addon-perMulta">%</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-6">
+          <label for="inputVlrCorrigido">Valor Corrigido</label>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="addon-preco">R$</span>
+            <input type="number" id="inputVlrCorrigido"
+                   disabled
+                   aria-describedby="basic-addon1"
+                   name="vlrCorrigido" placeholder="000,00"
+                   class="form-control"
+                   #vlrCorrigido="ngModel"
+                   [(ngModel)]="titulo.vlrCorrigido" />
+          </div>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="inputVlrJuros">Total Juros</label>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="addon-preco">R$</span>
+            <input type="number" id="inputVlrJuros"
+                   disabled
+                   aria-describedby="basic-addon1"
+                   name="vlrJuros" placeholder=""
+                   class="form-control"
+                   #vlrJuros="ngModel"
+                   [(ngModel)]="titulo.vlrJuros" />
+          </div>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="inputVlrMulta">Valor Multa</label>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="addon-preco">R$</span>
+            <input type="number" id="inputVlrMulta"
+                   disabled
+                   aria-describedby="basic-addon1"
+                   name="vlrMulta" placeholder=""
+                   class="form-control"
+                   #vlrMulta="ngModel"
+                   [(ngModel)]="titulo.vlrMulta" />
           </div>
         </div>
 
@@ -132,7 +157,7 @@
 
         <div class="form-group col-md-6">
           <button class="btn btn-secondary btn-block" type="submit" [routerLink]="['/titulos']">
-            Cancelar
+            Voltar
           </button>
         </div>
       </div>
@@ -150,3 +175,141 @@
 
 </form>
 <!--</div>-->
+
+<form class="form-group mb-4" *ngIf="titulo.id">
+  <div class="card col-md-12">
+    <div class="card-body">
+
+      <h4 class="h4 mb-4 cadastro">Parcelas</h4>
+
+      <div class="form-row">
+        <div class="form-group mb-4 col-md-2">
+          <label for="inputNumParcela">Numero Parcela</label>
+          <input type="number" id="inputNumParcela"
+                 disabled
+                 aria-describedby="basic-addon1"
+                 name="numParcela" placeholder=""
+                 class="form-control"
+                 #numParcela="ngModel"
+                 
+                 [(ngModel)]="tituloParcela.numParcela"/>
+          <!--<div class="invalid-feedback mb-2" *ngIf="numParcela.invalid && (numParcela.dirty || numParcela.touched)">
+            <div *ngIf="numParcela.errors.required">Numero da parcela deve ser informado </div>
+          </div>-->
+        </div>
+
+        <div class="form-group mb-4 col-md-3">
+          <label for="inputVencimetno">Vencimento</label>
+          <input  id="inputVencimento"
+                 type="date"
+                 aria-describedby="basic-addon1"
+                 name="vencimento" placeholder=""
+                 class="form-control"
+                 #vencimento="ngModel"
+                 [(ngModel)]="tituloParcela.vencimento"/>
+
+          <!--(ngModelChange)="titulo.vlrOriginal=$event"
+    [ngModel]="titulo.vlrOriginal | number:'1.4-2'"
+
+         <!--[ngClass]="{
+    'is-invalid':vencimento.invalid && (vencimento.dirty || vencimento.touched),
+    'is-valid':vencimento.valid && (vencimento.dirty || vencimento.touched)
+   }"
+         required-->
+          <!--<div class="invalid-feedback mb-2" *ngIf="vencimento.invalid && (vencimento.dirty || vencimento.touched)">
+    <div *ngIf="vencimento.errors.required">Vencimento parcela deve ser informado </div>
+  </div>-->
+        </div>
+
+        <div class="form-group mb-4 col-md-4">
+          <label for="inputVlrOriginalParcela">Valor</label>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="addon-preco">R$</span>
+            <input type="number" id="inputVlrOriginalParcela"
+                   aria-describedby="basic-addon1"
+                   name="vlrOriginalParcela" placeholder="000,00"
+                   class="form-control"
+                   #vlrOriginalParcela="ngModel"
+                   [(ngModel)]="tituloParcela.vlrOriginal"/>
+                   <!--[ngClass]="{
+            'is-invalid':vlrOriginalParcela.invalid && (vlrOriginalParcela.dirty || vlrOriginalParcela.touched),
+            'is-valid':vlrOriginalParcela.valid && (vlrOriginalParcela.dirty || vlrOriginalParcela.touched)
+           }"
+                   required-->  
+                   
+          </div>
+          <!--<div class="invalid-feedback mb-2" *ngIf="vlrOriginalParcela.invalid && (vlrOriginalParcela.dirty || vlrOriginalParcela.touched)">
+            <div *ngIf="vlrOriginalParcela.errors.required">Valor deve ser informado </div>
+          </div>-->
+        </div>
+
+
+        <div class="form-group mb-4 col-md-3">
+          <label for="btnAddParcela"></label>
+          <div class="input-group mb-2">
+            <a class="text-success">
+
+              <button class="btn btn-primary btn-block mb-2"
+                      id="btnAddParcela"
+                      title="Adicionar parcela"
+                      type="submit"
+                      [disabled]="ativarSpinnerParcela"
+                      (click)="adicionarTituloParcela()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                </svg>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativarSpinnerParcela"></span>
+              </button>
+
+              <!--<button class="btn btn-primary btn-block" type="submit" (click)="cadastrar()" [disabled]="ativarSpinner">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativarSpinner"></span>
+                {{salvarAtualizar}}
+              </button>-->
+
+
+              
+            </a>
+            <span class="input-group-text mb-2" id="addon-preco">Quantidade Parcelas: {{titulo.qtdeParcelas}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="alertaParcela">
+        {{mensagemParcela}}
+      </div>
+
+      <div class="alert alert-success" *ngIf="parcelaCadastrada">
+        {{mensagemParcela}}
+      </div>
+
+      <table class="table table-hover" *ngIf="tituloParcelas">
+        <thead>
+          <tr>
+            <th>Nº</th>
+            <th>Valor Original</th>
+            <th>Vencimento</th>
+            <th>Dias de Atraso</th>
+            <th>Valor Multa</th>
+            <th>Valor Juros</th>
+            <th>Valor Corrigido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tp of tituloParcelas">
+            <th>{{tp.numParcela}}</th>
+            <th class="valor">{{tp.vlrOriginal | number:'1.2-2'}}</th>
+            <th class="central">{{tp.vencimento | date:'dd/MM/yyyy'}}</th>
+            <th class="central">{{tp.diasEmAtraso}}</th>
+            <th class="valor">{{tp.vlrMulta | number:'1.2-2' }}</th>
+            <th class="valor">{{tp.vlrJuros | number:'1.2-2'}}</th>
+            <th class="valor">{{tp.vlrCorrigido | number:'1.2-2'}}</th>
+            <th><button class="btn btn-success btn-sm" (click)="editarParcela(tp)">Editar</button></th>
+            <th><button class="btn btn-danger btn-sm" (click)="excluirParcela(tp)">Excluir</button></th>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</form>
+
+

@@ -33,7 +33,7 @@ export class ListagemTituloComponent implements OnInit {
     this.router.navigate(['/manutencao-titulo']);
   }
 
-  public excluirCliente(titulo: Titulo) {
+  public excluirTitulo(titulo: Titulo) {
     var retorno = confirm("Deseja realmente excluir esse titulo nº: " + titulo.id + " ?");
     if (retorno) {
       this.tituloServico.excluirTitulo(titulo)

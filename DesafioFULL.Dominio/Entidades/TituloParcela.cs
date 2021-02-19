@@ -23,6 +23,9 @@ namespace DesafioFULL.Dominio.Entidades
 
             if (VlrOriginal <= 0)
                 AdicionarMensagemValidacao("Necessita de um valor valido");
+
+            if (NumParcela <= 0)
+                AdicionarMensagemValidacao("Necessita de um valor de parcela valido");
         }
     }
 }

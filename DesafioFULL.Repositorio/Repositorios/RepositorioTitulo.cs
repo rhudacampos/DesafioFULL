@@ -15,25 +15,25 @@ namespace DesafioFULL.Repositorio.Repositorios
 
         public IEnumerable<ViewModelTitulo> ObterTodosTitulos()
         {
-            var query = (from titulos in _desafioFULLContexto.Titulos.AsQueryable().Distinct()  
-                        select new ViewModelTitulo
+            var query = (from titulos in _desafioFULLContexto.Titulos.AsQueryable().Distinct()
+                         select new ViewModelTitulo
                          {
-                            id = titulos.Id,
-                            clienteId = titulos.ClienteId,
-                            nomeCliente = titulos.Cliente.Nome + " " + titulos.Cliente.SobreNome,
-                            cpfCliente = titulos.Cliente.CPF,
-                            diasEmAtraso = titulos.DiasEmAtraso,
-                            perJuros = titulos.DiasEmAtraso,
-                            perMulta = titulos.PerMulta,
-                            vlrOriginal = titulos.VlrOriginal,
-                            vlrCorrigido = titulos.VlrCorrigido,
-                            qtdeParcelas = titulos.QtdeParcelas,
-                            vlrJuros = titulos.VlrJuros,
-                            vlrMulta = titulos.VlrMulta
+                             id = titulos.Id,
+                             clienteId = titulos.ClienteId,
+                             nomeCliente = titulos.Cliente.Nome + " " + titulos.Cliente.SobreNome,
+                             cpfCliente = titulos.Cliente.CPF,
+                             diasEmAtraso = titulos.DiasEmAtraso,
+                             perJuros = titulos.DiasEmAtraso,
+                             perMulta = titulos.PerMulta,
+                             vlrOriginal = titulos.VlrOriginal,
+                             vlrCorrigido = titulos.VlrCorrigido,
+                             qtdeParcelas = titulos.QtdeParcelas,
+                             vlrJuros = titulos.VlrJuros,
+                             vlrMulta = titulos.VlrMulta
                          }
                                          );
 
-            
+
             return query.ToList();
         }
     }

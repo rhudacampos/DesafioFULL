@@ -24,7 +24,10 @@
           <th>Dias em Atraso</th>
           <th>Multa</th>
           <th>Juros</th>
-          <th>Valor Corrigido</th>
+          <th>Valor Corigido</th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -36,14 +39,14 @@
           <th class="valor">{{t.vlrMulta | number:'1.2-2' }}</th>
           <th class="valor">{{t.vlrJuros | number:'1.2-2'}}</th>
           <th class="valor">{{t.vlrCorrigido | number:'1.2-2'}}</th>
+          <th><button class="btn btn-info btn-sm" (click)="mostaParcela(t)">Parcelas</button></th>
           <th><button class="btn btn-success btn-sm" (click)="editarTitulo(t)">Editar</button></th>
           <th><button class="btn btn-danger btn-sm" (click)="excluirTitulo(t)">Excluir</button></th>
         </tr>
+
       </tbody>
     </table>
   </div>
 </div>
-
-
 
 

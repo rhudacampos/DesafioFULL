@@ -1,5 +1,5 @@
-﻿using DesafioFULL.Dominio.Entidades;
-using DesafioFULL.Dominio.Interfaces.Repositorios;
+﻿using DesafioFULL.Aplicacao.Interfaces;
+using DesafioFULL.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -9,10 +9,10 @@ namespace DesafioFULL.Web.Controllers
     [Route("[controller]")]
     public class TituloParcelaController : Controller
     {
-        private readonly IRepositorioTituloParcela _repositorioTituloParcela;
-        public TituloParcelaController(IRepositorioTituloParcela repositorioTituloParcela)
+        private readonly IAppServicoTitulo _appServicoTitulo;
+        public TituloParcelaController(IAppServicoTitulo appServicoTitulo)
         {
-            _repositorioTituloParcela = repositorioTituloParcela;
+            _appServicoTitulo = appServicoTitulo;
         }
 
         [HttpGet]
@@ -20,7 +20,7 @@ namespace DesafioFULL.Web.Controllers
         {
             try
             {
-                return Ok(_repositorioTituloParcela.ObterTodos());
+                return Ok(_appServicoTitulo.ObterTodos());
                 //if(condicao == false)
                 //{
                 //    return BadRequest("");
@@ -34,12 +34,20 @@ namespace DesafioFULL.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]TituloParcela TituloParcela)
+        public IActionResult Post([FromBody]TituloParcela tituloParcela)
         {
             try
             {
-                _repositorioTituloParcela.Adicionar(TituloParcela);
-                return Created("tituloParcela", TituloParcela);
+                if (tituloParcela.Id > 0)
+                {
+                    _appServicoTitulo.ValidarEAtualizarParcela(tituloParcela);
+                }
+                else
+                {
+                    _appServicoTitulo.ValidarECadastrarParcela(tituloParcela);
+                }
+
+                return Created("TituloParcela", tituloParcela);
             }
             catch (Exception e)
             {
@@ -47,6 +55,37 @@ namespace DesafioFULL.Web.Controllers
                 return BadRequest(e.ToString());
             }
         }
+        
+        [HttpPost("parcelasPorTitulo")]
+        public IActionResult Obter([FromBody] Titulo titulo)
+        {
+            try
+            {
+                var tituloParcelas = _appServicoTitulo.ObterParcelasPorTitulo(titulo);
+                return Created("TituloParcela", tituloParcelas);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.ToString());
+            }
+        }
+
+        [HttpPost("excluir")]
+        public IActionResult Excluir([FromBody] TituloParcela tituloParcela)
+        {
+            try
+            {
+                var retorno = _appServicoTitulo.ExcluirParcelaERetornarLista(tituloParcela);
+                return Json(retorno);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
 
     }
 }

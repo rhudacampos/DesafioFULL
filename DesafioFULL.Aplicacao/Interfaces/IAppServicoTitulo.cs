@@ -9,11 +9,17 @@ namespace DesafioFULL.Aplicacao.Interfaces
         IEnumerable<ViewModelTitulo> ObterListagemTitulos();
         void ValidarECadastrar(Titulo titulo);
         void ValidarEAtualizar(Titulo titulo);
-        IEnumerable<Titulo> ExcluirERetornarLista(Titulo titulo);
-        TituloParcela CalcularTituloParcela(ref Titulo titulo, TituloParcela tituloParcela);
+        IEnumerable<ViewModelTitulo> ExcluirERetornarLista(Titulo titulo);
+        TituloParcela CalcularTituloParcela(ref Titulo titulo, TituloParcela tituloParcela, int numParcela);
         Titulo CalcularTitulo(Titulo titulo);
         void ProcessarCalculoTitulos();
         bool CalculoEfetuado();
+
+        void ValidarECadastrarParcela(TituloParcela tituloParcela);
+        void ValidarEAtualizarParcela(TituloParcela tituloParcela);
+
+        IEnumerable<ViewModelTituloParcela> ObterParcelasPorTitulo(Titulo titulo);
+        IEnumerable<ViewModelTituloParcela> ExcluirParcelaERetornarLista(TituloParcela tituloParcela);
 
     }
 }

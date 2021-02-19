@@ -38,7 +38,7 @@ namespace DesafioFULL.Aplicacao.Serviços
                 //using (var unidadeTrabalho = _repositorioTitulo.TransactionScope())
                 //{
 
-                    _repositorioTitulo.Adicionar(titulo);
+                _repositorioTitulo.Adicionar(titulo);
                 //    unidadeTrabalho.Complete();
                 //}
             }
@@ -61,11 +61,11 @@ namespace DesafioFULL.Aplicacao.Serviços
 
                 using (var unidadeTrabalho = _repositorioTitulo.TransactionScope())
                 {
-                    CalcularTitulo(titulo);
-                    _repositorioTitulo.Atualizar(titulo);
+                    var retornoTitulo = CalcularTitulo(titulo);
+                    _repositorioTitulo.Atualizar(retornoTitulo);
                     unidadeTrabalho.Complete();
                 }
-                
+
             }
             catch (System.Exception)
             {
@@ -73,12 +73,12 @@ namespace DesafioFULL.Aplicacao.Serviços
             }
         }
 
-        public IEnumerable<Titulo> ExcluirERetornarLista(Titulo titulo)
+        public IEnumerable<ViewModelTitulo> ExcluirERetornarLista(Titulo titulo)
         {
             try
             {
                 _repositorioTitulo.Remover(titulo);
-                return _repositorioTitulo.ObterTodos();
+                return _repositorioTitulo.ObterTodosTitulos();
             }
             catch (System.Exception)
             {
@@ -97,8 +97,6 @@ namespace DesafioFULL.Aplicacao.Serviços
                 };
 
                 var retornoListaTitulos = _repositorioTitulo.ObterTodosTitulos();
-
-
 
                 return retornoListaTitulos;
             }
@@ -156,34 +154,43 @@ namespace DesafioFULL.Aplicacao.Serviços
 
         public Titulo CalcularTitulo(Titulo titulo)
         {
-
+            decimal totalVlrOriginal = 0;
+            int countParcela = 0;
             titulo.VlrCorrigido = 0;
             titulo.VlrJuros = 0;
             titulo.VlrMulta = 0;
             titulo.DiasEmAtraso = 0;
+            
             var listaTituloParcela = _repositorioTituloParcela.ObterPorTitulo(titulo);
             foreach (var tituloParcela in listaTituloParcela)
             {
-                var tituloParcelaCalculado = CalcularTituloParcela(ref titulo, tituloParcela);
-                
+                countParcela += 1;
+                var tituloParcelaCalculado = CalcularTituloParcela(ref titulo, tituloParcela, countParcela);
 
+                totalVlrOriginal += tituloParcelaCalculado.VlrOriginal;
                 titulo.VlrCorrigido += tituloParcelaCalculado.VlrCorrigido;
                 titulo.VlrJuros += tituloParcelaCalculado.VlrJuros;
             }
 
             if (titulo.DiasEmAtraso > 0)
-              titulo.VlrMulta = titulo.VlrOriginal * (titulo.PerMulta / 100);
+                titulo.VlrMulta = titulo.VlrOriginal * (titulo.PerMulta / 100);
 
             titulo.QtdeParcelas = listaTituloParcela.Count;
+            if (totalVlrOriginal > titulo.VlrOriginal)
+                titulo.VlrOriginal = totalVlrOriginal;
 
             //_repositorioTituloParcela.AtualizarEmLote(listaTituloParcela);
             return titulo;
         }
 
-        public TituloParcela CalcularTituloParcela(ref Titulo titulo, TituloParcela tituloParcela)
+        public TituloParcela CalcularTituloParcela(ref Titulo titulo, TituloParcela tituloParcela, int numParcela)
         {
             decimal diasEmAtraso;
             diasEmAtraso = Convert.ToDecimal((DateTime.Today - tituloParcela.Vencimento).TotalDays);
+            if (diasEmAtraso < 0)
+            {
+                diasEmAtraso = 0;
+            }
             if (diasEmAtraso >= titulo.DiasEmAtraso)
             {
                 titulo.DiasEmAtraso = (int)diasEmAtraso;
@@ -192,22 +199,104 @@ namespace DesafioFULL.Aplicacao.Serviços
             if (diasEmAtraso > 0)
             {
                 tituloParcela.VlrMulta = tituloParcela.VlrOriginal * (titulo.PerMulta / 100);
+                tituloParcela.VlrJuros = (titulo.PerJuros / 100) / 30 * diasEmAtraso * tituloParcela.VlrOriginal;
             }
             else
             {
                 tituloParcela.VlrMulta = 0;
+                tituloParcela.VlrJuros = 0;
             }
 
-            tituloParcela.VlrJuros = (titulo.PerJuros / 100) / 30 * diasEmAtraso * tituloParcela.VlrOriginal;
             tituloParcela.DiasEmAtraso = (int)diasEmAtraso;
             tituloParcela.VlrCorrigido = tituloParcela.VlrOriginal + tituloParcela.VlrMulta + tituloParcela.VlrJuros;
-
+            tituloParcela.NumParcela = numParcela;
             return tituloParcela;
         }
 
+        public void ValidarECadastrarParcela(TituloParcela tituloParcela)
+        {
+            try
+            {
+                tituloParcela.Validar();
+                if (!tituloParcela.EhValido)
+                {
+                    throw new System.ArgumentException(tituloParcela.ObterMensagensValidacao());
+                }
 
 
+                using (var unidadeTrabalho = _repositorioTitulo.TransactionScope())
+                {
+                    _repositorioTituloParcela.Adicionar(tituloParcela);
 
+                    var titulo = _repositorioTitulo.ObterPorId(tituloParcela.TituloId);
+                    var retornoTitulo = CalcularTitulo(titulo);
+                    _repositorioTitulo.Atualizar(retornoTitulo);
+
+                    unidadeTrabalho.Complete();
+                }
+
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        public void ValidarEAtualizarParcela(TituloParcela tituloParcela)
+        {
+            try
+            {
+                tituloParcela.Validar();
+                if (!tituloParcela.EhValido)
+                {
+                    throw new System.ArgumentException(tituloParcela.ObterMensagensValidacao());
+                }
+
+                using (var unidadeTrabalho = _repositorioTitulo.TransactionScope())
+                {
+                    _repositorioTituloParcela.Atualizar(tituloParcela);
+
+                    var titulo = _repositorioTitulo.ObterPorId(tituloParcela.Id);
+                    var retornoTitulo = CalcularTitulo(titulo);
+                    _repositorioTitulo.Atualizar(retornoTitulo);
+
+                    unidadeTrabalho.Complete();
+                }
+
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<ViewModelTituloParcela> ObterParcelasPorTitulo(Titulo titulo)
+        {
+            return _repositorioTituloParcela.ObterPorTituloId(titulo.Id);
+
+        }
+
+        public IEnumerable<ViewModelTituloParcela> ExcluirParcelaERetornarLista(TituloParcela tituloParcela)
+        {
+            try
+            {
+                var tituloId = tituloParcela.TituloId;
+                using (var unidadeTrabalho = _repositorioTituloParcela.TransactionScope())
+                {
+                    _repositorioTituloParcela.Remover(tituloParcela);
+
+                    var titulo = _repositorioTitulo.ObterPorId(tituloId);
+                    var retornoTitulo = CalcularTitulo(titulo);
+                    _repositorioTitulo.Atualizar(retornoTitulo);
+                    unidadeTrabalho.Complete();
+                }
+                return _repositorioTituloParcela.ObterPorTituloId(tituloId);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
 
 
     }

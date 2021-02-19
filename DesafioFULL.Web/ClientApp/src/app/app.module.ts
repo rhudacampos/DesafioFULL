@@ -21,6 +21,7 @@ import { CadastroClienteComponent } from './cliente/cadastro/cadastro.cliente.co
 import { ListagemTituloComponent } from './titulo/listagem/listagem.titulo.component';
 import { TituloServico } from './servicos/titulo/titulo.servico';
 import { ManutencaoTituloComponent } from './titulo/manutencao/manutencao.titulo.component';
+import { DatePipe } from '@angular/common';
 
  
 @NgModule({
@@ -51,7 +52,7 @@ import { ManutencaoTituloComponent } from './titulo/manutencao/manutencao.titulo
       { path: 'manutencao-titulo', component: ManutencaoTituloComponent/*, canActivate: [GuardaRotas]*/ },
     ])
   ],
-  providers: [UsuarioServico, ClienteServico, TituloServico],
+  providers: [UsuarioServico, ClienteServico, TituloServico, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

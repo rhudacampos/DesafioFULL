@@ -30,7 +30,7 @@ namespace DesafioFULL.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Titulo titulo)
+        public IActionResult Post([FromBody] Titulo titulo)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace DesafioFULL.Web.Controllers
                     _appServicoTitulo.ValidarECadastrar(titulo);
                 }
 
-                return Created("Cliente", titulo);
+                return Created("Titulo", titulo);
             }
             catch (Exception e)
             {
@@ -52,5 +52,53 @@ namespace DesafioFULL.Web.Controllers
             }
         }
 
+        [HttpPost("obterTitulo")]
+        public IActionResult OnterTitulo([FromBody] Titulo titulo)
+        {
+            try
+            {
+                var tituloParcelas = _appServicoTitulo.ObterPorId(titulo.Id);
+                return Created("Titulo", titulo);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.ToString());
+            }
+        }
+
+
+        [HttpPost("parcelasPorTitulo")]
+        public IActionResult ObterParcelas([FromBody] Titulo titulo)
+        {
+            try
+            {
+                var tituloParcelas = _appServicoTitulo.ObterParcelasPorTitulo(titulo);
+                return Created("TituloParcelas", tituloParcelas);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.ToString());
+            }
+        }
+
+
+        [HttpPost("excluir")]
+        public IActionResult Excluir([FromBody] Titulo titulo)
+        {
+            try
+            {
+                var retorno = _appServicoTitulo.ExcluirERetornarLista(titulo);
+                return Json(retorno);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
+
 }
+
