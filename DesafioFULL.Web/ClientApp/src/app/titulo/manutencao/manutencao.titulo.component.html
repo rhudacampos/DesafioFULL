@@ -206,7 +206,7 @@
                  name="vencimento" placeholder=""
                  class="form-control"
                  #vencimento="ngModel"
-                 [ngModel]="tituloParcela.vencimento | date:'yyyy-MM-dd'"/>
+                 [(ngModel)]="tituloParcela.vencimento"/>
 
           <!--(ngModelChange)="titulo.vlrOriginal=$event"
     [ngModel]="titulo.vlrOriginal | number:'1.4-2'"
